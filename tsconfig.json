@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "lib": ["es2017", "esnext.array", "dom", "es2015.iterable"],
-    "types": ["typescript", "jest"],
+    "target": "esnext",
+    "lib": ["esnext", "esnext.array", "es2015.iterable"],
     "module": "es2015",
     "declaration": true,
     "declarationMap": true,
