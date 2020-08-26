@@ -21,19 +21,11 @@ f(a, n)
 f(n) = fi(0, len(a)-1)
  */
 
+import { rank } from './rank'
+
 describe('测试二分查找', () => {
   it('递归实现', () => {
-    function f(arr: number[], n: number): number {
-      function fi(min: number, max: number): number {
-        if (min > max) return -1
-        const mid = Math.floor(min + (max - min) / 2)
-        if (arr[mid] < n) return fi(mid + 1, max)
-        else if (arr[mid] > n) return fi(min, mid - 1)
-        else return mid
-      }
-      return fi(0, arr.length - 1)
-    }
-    console.log(f([1, 2, 3, 4, 5, 6], 1))
+    console.log(rank([1, 2, 3, 4, 5, 6], 1))
   })
   it('数组实现', () => {
     function f(arr: number[], n: number) {
