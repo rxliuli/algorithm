@@ -13,13 +13,18 @@ f(p,q) =
  */
 import { rand } from '../util/rand'
 import Benchmark from 'benchmark'
+import { gcd } from '../util/gcd'
 
 describe('1.1.24', () => {
-  function gcd(p: number, q: number): number {
-    // console.log(p, q)
-    const c = p % q
-    if (c === 0) return q
-    else return gcd(q, c)
+  const arr = Array(1000)
+    .fill(0)
+    .map(() => rand(1000) + 1)
+  function testFoo(foo: (arr: number[]) => number) {
+    expect(foo([2, 4, 6])).toBe(2)
+    expect(foo([1, 111, 111])).toBe(1)
+    expect(foo([1, 234, 567])).toBe(1)
+    expect(foo([16, 8, 4])).toBe(4)
+    console.log('count: ', new Benchmark(() => foo(arr)).run().count)
   }
   it('基本示例', () => {
     expect(gcd(6, 9)).toBe(3)
@@ -30,9 +35,7 @@ describe('1.1.24', () => {
       return nums.reduce((a, b) => gcd(a, b))
     }
 
-    expect(foo([2, 4, 6])).toBe(2)
-    expect(foo([1, 111, 111])).toBe(1)
-    expect(foo([1, 234, 567])).toBe(1)
+    testFoo(foo)
   })
   describe('通过递归实现', () => {
     it('基本实现', () => {
@@ -48,9 +51,7 @@ describe('1.1.24', () => {
         if (nums.length <= 2) return gcd(nums[0], nums[1])
         else return gcd(nums[0], foo(nums.slice(1)))
       }
-      expect(foo([2, 4, 6])).toBe(2)
-      expect(foo([1, 111, 111])).toBe(1)
-      expect(foo([1, 234, 567])).toBe(1)
+      testFoo(foo)
     })
     it('优化性能（减小数组复制）', () => {
       /**
@@ -64,15 +65,7 @@ describe('1.1.24', () => {
         }
         return innerF(nums)
       }
-      expect(foo([2, 4, 6])).toBe(2)
-      expect(foo([1, 111, 111])).toBe(1)
-      expect(foo([1, 234, 567])).toBe(1)
-      // expect(foo([16, 8, 4])).toBe(4)
-      const arr = Array(1000)
-        .fill(0)
-        .map(() => rand(1000) + 1)
-      console.log(foo(arr))
-      console.log(new Benchmark(() => foo(arr)).run().count)
+      testFoo(foo)
     })
     it('使用尾递归优化性能（减小栈的层级）', () => {
       /**
@@ -86,21 +79,14 @@ describe('1.1.24', () => {
        */
       function foo(nums: number[]): number {
         let i = 1
+        const maxIdx = nums.length - 1
         function innerF(r: number): number {
-          if (i > nums.length - 1) return r
+          if (i > maxIdx) return r
           else return innerF(gcd(r, nums[i++]))
         }
         return innerF(nums[0])
       }
-      expect(foo([2, 4, 6])).toBe(2)
-      expect(foo([1, 111, 111])).toBe(1)
-      expect(foo([1, 234, 567])).toBe(1)
-      expect(foo([16, 8, 4])).toBe(4)
-      const arr = Array(1000)
-        .fill(0)
-        .map(() => rand(1000) + 1)
-      console.log(foo(arr))
-      console.log(new Benchmark(() => foo(arr)).run().count)
+      testFoo(foo)
     })
   })
 })

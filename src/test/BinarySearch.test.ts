@@ -21,7 +21,7 @@ f(a, n)
 f(n) = fi(0, len(a)-1)
  */
 
-import { rank } from './rank'
+import { rank } from '../util/rank'
 
 describe('测试二分查找', () => {
   it('递归实现', () => {
