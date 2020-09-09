@@ -4,7 +4,7 @@
  * @param i
  * @param k
  */
-export function each(arr: any[], i: number, k: number) {
+export function exch(arr: any[], i: number, k: number) {
   const temp = arr[i]
   arr[i] = arr[k]
   arr[k] = temp

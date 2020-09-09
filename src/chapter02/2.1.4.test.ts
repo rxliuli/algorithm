@@ -5,7 +5,7 @@
 答案：
 实现一个插入排序，然后打印出轨迹即可
  */
-import { each } from '../util/each'
+import { exch } from '../util/exch'
 import { SortProcessInfo } from '../model/SortProcessInfo'
 
 it('2.1.4', () => {
@@ -17,7 +17,7 @@ it('2.1.4', () => {
       for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
         res.push({ arr, i: j, j: j - 1 })
         //直到不小于上一个值为止
-        each(arr, j, j - 1)
+        exch(arr, j, j - 1)
       }
     }
     return arr

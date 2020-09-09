@@ -5,7 +5,7 @@
 答案：首先，要编写出选择排序的函数
  */
 
-import { each } from '../util/each'
+import { exch } from '../util/exch'
 import { SortProcessInfo } from '../model/SortProcessInfo'
 
 it('2.1.1', () => {
@@ -22,7 +22,7 @@ it('2.1.1', () => {
       }
       res.push({ arr: [...arr], i, j: min })
       if (i !== min) {
-        each(arr, i, min)
+        exch(arr, i, min)
       }
     }
     return arr

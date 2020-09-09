@@ -1,4 +1,4 @@
-import { each } from './each'
+import { exch } from './exch'
 
 /**
  * 插入排序
@@ -9,7 +9,7 @@ export function sortByInsert(arr: number[]) {
     //如果小于上一个值，则交换它们
     for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
       //直到不小于上一个值为止
-      each(arr, j, j - 1)
+      exch(arr, j, j - 1)
     }
   }
   return arr

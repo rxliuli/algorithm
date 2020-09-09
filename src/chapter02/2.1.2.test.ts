@@ -7,7 +7,7 @@
 平均的话不太清楚。。。
  */
 
-import { each } from '../util/each'
+import { exch } from '../util/exch'
 
 it('2.1.2', () => {
   function f<T>(arr: T[]) {
@@ -23,7 +23,7 @@ it('2.1.2', () => {
       if (i !== min) {
         map.set(arr[i], (map.get(arr[i]) || 0) + 1)
         map.set(arr[min], (map.get(arr[min]) || 0) + 1)
-        each(arr, i, min)
+        exch(arr, i, min)
       }
     }
     return [arr, map] as const

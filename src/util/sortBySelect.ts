@@ -1,4 +1,4 @@
-import { each } from './each'
+import { exch } from './exch'
 
 /**
  * 选择排序
@@ -14,7 +14,7 @@ export function sortBySelect<T>(arr: T[]) {
       }
     }
     if (i !== min) {
-      each(arr, i, min)
+      exch(arr, i, min)
     }
   }
   return arr

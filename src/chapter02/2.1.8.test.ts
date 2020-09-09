@@ -8,7 +8,7 @@
 TODO 看到实际运行结果后发现结论是错的，因为即便只有 3 种值，但数组整体上是逆序的时候仍然是会变成 a + b,b+1,...,c-1 + c,c+1,...,n
  */
 
-import { each } from '../util/each'
+import { exch } from '../util/exch'
 import { rand } from '../util/rand'
 
 describe('2.1.8', () => {
@@ -21,7 +21,7 @@ describe('2.1.8', () => {
       for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
         res[res.length - 1].push([arr[j], arr[j - 1]])
         //直到不小于上一个值为止
-        each(arr, j, j - 1)
+        exch(arr, j, j - 1)
       }
     }
     return arr

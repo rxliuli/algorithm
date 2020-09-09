@@ -6,7 +6,7 @@
 答案：倒序数组
  */
 
-import { each } from '../util/each'
+import { exch } from '../util/exch'
 import { randIntArray } from '../util/randIntArray'
 import { sort } from '../util/sort'
 
@@ -23,7 +23,7 @@ it('2.1.3', () => {
         }
       }
       if (i !== min) {
-        each(arr, i, min)
+        exch(arr, i, min)
       }
     }
     return [arr, map] as const
