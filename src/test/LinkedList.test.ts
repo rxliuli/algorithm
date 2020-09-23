@@ -130,13 +130,13 @@ describe('测试链表', () => {
         }
       }
 
-      private* iterator() {
+      private *iterator() {
         for (let node = this._first; !!node; node = node.next) {
           yield node
         }
       }
 
-      * [Symbol.iterator]() {
+      *[Symbol.iterator]() {
         for (const node of this.iterator()) {
           yield node.val
         }

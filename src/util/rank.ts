@@ -1,3 +1,5 @@
+type DArray<T extends any[]> = T extends (infer U)[] ? U : never
+
 /**
 二分查找
 f(a, n)
@@ -9,12 +11,22 @@ f(a, n)
   a[mid] = n, mid
 f(n) = fi(0, len(a)-1)
  */
-export function rank(arr: number[], n: number): number {
+export function rank<T>(arr: T[], key: T): number
+export function rank<T extends any[], K>(
+  arr: T,
+  key: K,
+  kFn: (val: DArray<T>) => K,
+): number
+export function rank<T, K>(
+  arr: T[],
+  key: K,
+  kFn: (val: T) => K = (val) => (val as any) as K,
+): number {
   function fi(min: number, max: number): number {
     if (min > max) return -1
     const mid = Math.floor(min + (max - min) / 2)
-    if (arr[mid] < n) return fi(mid + 1, max)
-    else if (arr[mid] > n) return fi(min, mid - 1)
+    if (kFn(arr[mid]) < key) return fi(mid + 1, max)
+    else if (kFn(arr[mid]) > key) return fi(min, mid - 1)
     else return mid
   }
 
