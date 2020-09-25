@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["esnext", "esnext.array", "es2015.iterable"],
-    "module": "es2015",
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "module": "ESNext",
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",

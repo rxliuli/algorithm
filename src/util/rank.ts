@@ -25,8 +25,8 @@ export function rank<T, K>(
   function fi(min: number, max: number): number {
     if (min > max) return -1
     const mid = Math.floor(min + (max - min) / 2)
-    if (kFn(arr[mid]) < key) return fi(mid + 1, max)
-    else if (kFn(arr[mid]) > key) return fi(min, mid - 1)
+    if (key < kFn(arr[mid])) return fi(min, mid - 1)
+    else if (key > kFn(arr[mid])) return fi(mid + 1, max)
     else return mid
   }
 
