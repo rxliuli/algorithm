@@ -6,7 +6,6 @@ describe('测试 ArrayList', () => {
     list.add(1)
     list.add(2)
     list.add(3)
-    console.log(list[0])
     expect(Array.from(list)).toEqual([1, 2, 3])
     list.insert(1, 4)
     expect(Array.from(list)).toEqual([1, 4, 2, 3])

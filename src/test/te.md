@@ -1,0 +1,16 @@
+- Edit
+   - [ ] Paste the picture and upload it to joplin automatically and get the link to insert
+   - [ ] Solve the problem that joplin ref link cannot be opened by `ctrl+click` in the editor
+- Optimization
+   - [ ] Enable special right-click menu and icon for todo
+   - [ ] Add development related documents
+   - [ ] Fix the problem that the notes in the root directory cannot be displayed
+   - [ ] Should allow dragging of notes or directories
+   - [ ] Rename the note/directory directly in the input box
+-  history record
+   - [ ] Allow to view all history of current note
+   - [ ] Compare the specified history with the current file, and support rollback
+- Tag related
+   - [ ] Add tags to notes
+   - [ ] Remove tags for notes
+   - [ ] Rename label
