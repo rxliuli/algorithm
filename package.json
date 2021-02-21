@@ -3,6 +3,29 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,css,md,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "endOfLine": "lf"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "@types/benchmark": "^2.1.0",
     "@types/fs-extra": "^9.0.1",
@@ -12,7 +35,9 @@
     "chalk": "^4.1.0",
     "cloc": "^2.6.0",
     "fs-extra": "^9.0.1",
+    "husky": "^5.0.9",
     "jest": "^26.4.1",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.1.1",
     "ts-jest": "^26.2.0",
     "ts-node": "^9.1.1",
