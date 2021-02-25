@@ -1,4 +1,4 @@
-interface IStack<T> {
+export interface IStack<T> {
   isEmpty: boolean
   size: number
 
