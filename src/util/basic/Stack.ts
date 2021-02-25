@@ -23,6 +23,11 @@ export class Stack<T> implements IStack<T> {
     return res === undefined ? null : res
   }
 
+  peek(): T | null {
+    const res = this.arr[this.arr.length - 1]
+    return res === undefined ? null : res
+  }
+
   push(item: T): void {
     this.arr.push(item)
   }
