@@ -33,8 +33,8 @@ export class Stack<T> implements IStack<T> {
   }
 
   *[Symbol.iterator]() {
-    for (let t of this.arr) {
-      yield t
+    for (let i = this.arr.length - 1; i >= 0; i--) {
+      yield this.arr[i]
     }
   }
 }
