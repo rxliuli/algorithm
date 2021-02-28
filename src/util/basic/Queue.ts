@@ -1,4 +1,4 @@
-interface IQueue<T> {
+export interface IQueue<T> {
   isEmpty: boolean
   size: number
 
