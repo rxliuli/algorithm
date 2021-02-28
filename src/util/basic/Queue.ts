@@ -5,6 +5,8 @@ export interface IQueue<T> {
   enqueue(item: T): void
 
   dequeue(): T | null
+
+  [Symbol.iterator](): Generator<T>
 }
 
 export class Queue<T> implements IQueue<T> {

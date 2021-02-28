@@ -5,6 +5,8 @@ export interface IStack<T> {
   push(item: T): void
 
   pop(): T | null
+
+  [Symbol.iterator](): Generator<T>
 }
 
 export class Stack<T> implements IStack<T> {
@@ -36,5 +38,14 @@ export class Stack<T> implements IStack<T> {
     for (let i = this.arr.length - 1; i >= 0; i--) {
       yield this.arr[i]
     }
+  }
+
+  static copy<T>(stack: Stack<T>): Stack<T> {
+    const arr = [...stack]
+    const res = new Stack<T>()
+    for (let i = arr.length - 1; i >= 0; i--) {
+      res.push(arr[i])
+    }
+    return stack
   }
 }
