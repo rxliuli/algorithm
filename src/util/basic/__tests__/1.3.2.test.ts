@@ -9,7 +9,7 @@ it was - the best - of times - - - it was - the - -
  */
 
 import { Stack } from '../Stack'
-import { groupBy } from '../groupBy'
+import { groupBy } from '@liuli-util/array'
 
 describe('1.3.2', () => {
   const arr = 'it was - the best - of times - - - it was - the - -'.split(' ')
