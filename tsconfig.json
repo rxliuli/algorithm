@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
+    "target": "ES2019",
+    "lib": [
+      "ESNext"
+    ],
     "module": "ESNext",
     "declaration": true,
     "declarationMap": true,
@@ -15,6 +17,11 @@
     "importHelpers": true,
     "moduleResolution": "node"
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["./dist", "./node_modules"]
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "./dist",
+    "./node_modules"
+  ]
 }
