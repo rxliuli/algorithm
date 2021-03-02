@@ -34,4 +34,12 @@ export class Queue<T> implements IQueue<T> {
       yield t
     }
   }
+
+  static copy<T>(queue: Queue<T>): Queue<T> {
+    const res = new Queue<T>()
+    for (let v of queue) {
+      res.enqueue(v)
+    }
+    return res
+  }
 }

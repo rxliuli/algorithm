@@ -46,6 +46,6 @@ export class Stack<T> implements IStack<T> {
     for (let i = arr.length - 1; i >= 0; i--) {
       res.push(arr[i])
     }
-    return stack
+    return res
   }
 }
