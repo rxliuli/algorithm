@@ -34,7 +34,17 @@ it('1.3.14', () => {
     }
 
     dequeue(): T | null {
-      throw new Error('no imp')
+      if (this._size === 0) {
+        return null
+      }
+      const first = this.arr[0]
+      this.arr = this.arr.slice(1, this._size)
+      this._size--
+      if (this._size <= this._len / 4) {
+        this._len = Math.floor(this._len / 2)
+        this.arr = this.arr.slice(0, this._len)
+      }
+      return first
     }
 
     enqueue(item: T): void {
@@ -46,4 +56,18 @@ it('1.3.14', () => {
       this._size++
     }
   }
+
+  const queue = new ResizingArrayQueue<number>(2)
+  queue.enqueue(1)
+  expect(queue.len).toBe(2)
+  queue.enqueue(2)
+  expect(queue.len).toBe(2)
+  queue.enqueue(3)
+  expect(queue.len).toBe(4)
+  expect([...queue]).toEqual([1, 2, 3])
+  expect(queue.dequeue()).toBe(1)
+  expect(queue.dequeue()).toBe(2)
+  expect(queue.len).toBe(2)
+  expect(queue.dequeue()).toBe(3)
+  expect(queue.len).toBe(1)
 })
