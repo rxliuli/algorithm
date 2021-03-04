@@ -29,11 +29,12 @@ describe('1.3.18', () => {
     } as LinkedNode<number>)
   })
   it('遍历节点', () => {
-    const f = (node: LinkedNode<number> | null) =>
-      [...LinkedNodeUtil.iterator(node)].map((item) => item.value)
     expect(
-      f({ value: 1, next: { value: 2, next: { value: 3, next: null } } }),
+      LinkedNodeUtil.values({
+        value: 1,
+        next: { value: 2, next: { value: 3, next: null } },
+      }),
     ).toStrictEqual([1, 2, 3])
-    expect(f(null)).toStrictEqual([])
+    expect(LinkedNodeUtil.values(null)).toStrictEqual([])
   })
 })
