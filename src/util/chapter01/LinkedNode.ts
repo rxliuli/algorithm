@@ -24,6 +24,10 @@ export class LinkedNodeUtil {
     }
   }
 
+  /**
+   * 从头开始遍历一个节点
+   * @param node
+   */
   static values<T>(node: LinkedNode<T> | null): T[] {
     const iter = this.iterator(node)
     const res: T[] = []
@@ -33,6 +37,12 @@ export class LinkedNodeUtil {
     return res
   }
 
+  /**
+   * 从头拷贝一个节点
+   * @param node
+   */
+  static copy<T>(node: LinkedNode<T>): LinkedNode<T>
+  static copy<T>(node: null): null
   static copy<T>(node: LinkedNode<T> | null): LinkedNode<T> | null {
     const iter = this.iterator(node)
     const first: LinkedNode<T> = { value: null as any, next: null }
@@ -45,6 +55,12 @@ export class LinkedNodeUtil {
     return first.next
   }
 
+  /**
+   * 反转一个节点
+   * @param node
+   */
+  static reverse<T>(node: LinkedNode<T>): LinkedNode<T>
+  static reverse<T>(node: null): null
   static reverse<T>(node: LinkedNode<T> | null): LinkedNode<T> | null {
     const iter = this.iterator(node)
     let res: LinkedNode<T> | null = null
