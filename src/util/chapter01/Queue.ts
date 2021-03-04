@@ -1,3 +1,5 @@
+import { LinkedNode, LinkedNodeUtil } from './__tests__/LinkedNode'
+
 export interface IQueue<T> {
   isEmpty: boolean
   size: number
@@ -41,5 +43,47 @@ export class Queue<T> implements IQueue<T> {
       res.enqueue(v)
     }
     return res
+  }
+}
+
+export class LinkedQueue<T> implements IQueue<T> {
+  private first: LinkedNode<T> | null = null
+  private last: LinkedNode<T> | null = null
+  private _size = 0
+
+  get isEmpty() {
+    return this.size === 0
+  }
+
+  get size() {
+    return this._size
+  }
+
+  *[Symbol.iterator](): Generator<T> {
+    const iter = LinkedNodeUtil.iterator(this.first)
+    for (let item of iter) {
+      yield item.value
+    }
+  }
+
+  dequeue(): T | null {
+    if (this._size === 0) {
+      return null
+    }
+    const res = this.first!
+    this.first = res.next
+    this._size--
+    return res.value
+  }
+
+  enqueue(item: T): void {
+    if (this._size === 0) {
+      this.first = this.last = { value: item, next: null }
+    } else {
+      const old = this.last
+      this.last = { value: item, next: null }
+      old!.next = this.last
+    }
+    this._size++
   }
 }
