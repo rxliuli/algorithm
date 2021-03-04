@@ -1,14 +1,12 @@
 import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
 
-export interface IStack<T> {
+export interface IStack<T> extends Iterable<T> {
   isEmpty: boolean
   size: number
 
   push(item: T): void
 
   pop(): T | null
-
-  [Symbol.iterator](): Generator<T>
 }
 
 export class Stack<T> implements IStack<T> {

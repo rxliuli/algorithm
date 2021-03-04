@@ -1,12 +1,10 @@
 import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
 
-export interface IBag<T> {
+export interface IBag<T> extends Iterable<T> {
   isEmpty: boolean
   size: number
 
   add(item: T): void
-
-  [Symbol.iterator](): Generator<T>
 }
 
 export class Bag<T> implements IBag<T> {

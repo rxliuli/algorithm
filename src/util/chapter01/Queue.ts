@@ -1,14 +1,12 @@
 import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
 
-export interface IQueue<T> {
+export interface IQueue<T> extends Iterable<T> {
   isEmpty: boolean
   size: number
 
   enqueue(item: T): void
 
   dequeue(): T | null
-
-  [Symbol.iterator](): Generator<T>
 }
 
 export class Queue<T> implements IQueue<T> {
