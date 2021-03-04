@@ -1,4 +1,4 @@
-import { LinkedNode, LinkedNodeUtil } from './__tests__/LinkedNode'
+import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
 
 export interface IStack<T> {
   isEmpty: boolean

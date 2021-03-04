@@ -4,7 +4,7 @@
 x.next = x.next.next;
  */
 
-import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
+import { LinkedNode, LinkedNodeUtil } from '../LinkedNode'
 
 describe('1.3.18', () => {
   it('基本示例', () => {
