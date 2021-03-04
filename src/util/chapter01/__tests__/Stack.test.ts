@@ -1,7 +1,9 @@
 import { IStack, LinkedStack, Stack } from '../Stack'
+import { Class } from 'type-fest'
 
 describe('测试 Stack', () => {
-  function testStack(stack: IStack<number>) {
+  function testStack(Stack: Class<IStack<number>>) {
+    const stack = new Stack()
     stack.push(1)
     stack.push(2)
     stack.push(3)
@@ -14,9 +16,9 @@ describe('测试 Stack', () => {
   }
 
   it('测试迭代器', () => {
-    testStack(new Stack())
+    testStack(Stack)
   })
   it('测试 LinkedStack', () => {
-    testStack(new LinkedStack())
+    testStack(LinkedStack)
   })
 })
