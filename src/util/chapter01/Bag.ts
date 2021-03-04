@@ -1,8 +1,12 @@
-interface IBag<T> {
+import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
+
+export interface IBag<T> {
   isEmpty: boolean
   size: number
 
   add(item: T): void
+
+  [Symbol.iterator](): Generator<T>
 }
 
 export class Bag<T> implements IBag<T> {
@@ -24,5 +28,33 @@ export class Bag<T> implements IBag<T> {
     for (let t of this.arr) {
       yield t
     }
+  }
+}
+
+export class LinkedBag<T> implements IBag<T> {
+  private first: LinkedNode<T> | null = null
+  private _size = 0
+
+  get isEmpty() {
+    return this.size === 0
+  }
+
+  get size() {
+    return this._size
+  }
+
+  *[Symbol.iterator](): Generator<T> {
+    const iter = LinkedNodeUtil.iterator(this.first)
+    for (let item of iter) {
+      yield item.value
+    }
+  }
+
+  add(item: T): void {
+    this.first = {
+      value: item,
+      next: this.first,
+    }
+    this._size++
   }
 }
