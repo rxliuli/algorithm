@@ -4,49 +4,36 @@
 x.next = x.next.next;
  */
 
-interface INode<T> {
-  value: T
-  next?: INode<T>
-}
-
-class NodeUtil {
-  static toArray<T>(node: INode<T> | undefined): T[] {
-    const res: T[] = []
-    for (
-      let item: INode<T> | undefined = node;
-      item !== undefined;
-      item = item.next
-    ) {
-      res.push(item.value)
-    }
-    return res
-  }
-}
+import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
 
 describe('1.3.18', () => {
   it('基本示例', () => {
-    const node: INode<number> = {
+    const node: LinkedNode<number> = {
       value: 1,
       next: {
         value: 2,
         next: {
           value: 3,
+          next: null,
         },
       },
     }
 
-    node.next = node.next?.next
+    node.next = node.next!.next
     expect(node).toStrictEqual({
       value: 1,
       next: {
         value: 3,
+        next: null,
       },
-    } as INode<number>)
+    } as LinkedNode<number>)
   })
   it('遍历节点', () => {
+    const f = (node: LinkedNode<number> | null) =>
+      [...LinkedNodeUtil.iterator(node)].map((item) => item.value)
     expect(
-      NodeUtil.toArray({ value: 1, next: { value: 2, next: { value: 3 } } }),
+      f({ value: 1, next: { value: 2, next: { value: 3, next: null } } }),
     ).toStrictEqual([1, 2, 3])
-    expect(NodeUtil.toArray(undefined)).toStrictEqual([])
+    expect(f(null)).toStrictEqual([])
   })
 })

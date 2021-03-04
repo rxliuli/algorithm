@@ -1,3 +1,5 @@
+import { LinkedNode, LinkedNodeUtil } from './__tests__/LinkedNode'
+
 export interface IStack<T> {
   isEmpty: boolean
   size: number
@@ -47,5 +49,43 @@ export class Stack<T> implements IStack<T> {
       res.push(arr[i])
     }
     return res
+  }
+}
+
+export class LinkedStack<T> implements IStack<T> {
+  private first: LinkedNode<T> | null = null
+  private _size = 0
+
+  get isEmpty() {
+    return this.size === 0
+  }
+
+  get size() {
+    return this._size
+  }
+
+  *[Symbol.iterator](): Generator<T> {
+    const iter = LinkedNodeUtil.iterator(this.first)
+    for (let item of iter) {
+      yield item.value
+    }
+  }
+
+  pop(): T | null {
+    if (this._size === 0) {
+      return null
+    }
+    const res = this.first!
+    this.first = res.next
+    this._size--
+    return res.value
+  }
+
+  push(item: T): void {
+    this.first = {
+      value: item,
+      next: this.first,
+    }
+    this._size++
   }
 }
