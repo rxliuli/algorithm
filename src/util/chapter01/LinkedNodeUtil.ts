@@ -116,4 +116,12 @@ export class LinkedNodeUtil {
   ): boolean {
     return LinkedNodeUtil.find(node, predicate) !== null
   }
+
+  /**
+   * 接受一个链表结点作为参数并删除该结点的后续结点（如果参数结点或参数结点的后续结点为空则什么也不做）
+   */
+  static removeAfter<T>(node: LinkedNode<T>) {
+    node.next = null
+    return node
+  }
 }
