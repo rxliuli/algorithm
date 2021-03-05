@@ -134,4 +134,26 @@ export class LinkedNodeUtil {
     b.next = a.next
     a.next = b
   }
+
+  /**
+   * 从一个节点链条中过滤出符合条件的值
+   * @param node
+   * @param predicate
+   */
+  static filter<T>(
+    node: LinkedNode<T>,
+    predicate: (val: T, next: LinkedNode<T> | null) => boolean,
+  ): LinkedNode<T> | null {
+    const iter = this.iterator(node)
+    const first: LinkedNode<T> = { value: null as any, next: null }
+    let curr = first
+    for (let item of iter) {
+      if (predicate(item.value, item.next)) {
+        const temp: LinkedNode<T> = { value: item.value, next: null }
+        curr!.next = temp
+        curr = temp
+      }
+    }
+    return first.next
+  }
 }
