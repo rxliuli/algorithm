@@ -6,7 +6,7 @@ interface DoubleLinkedNode<T> {
   prev: DoubleLinkedNode<T> | null
 }
 
-interface IDoubleLinkedList<T> extends Iterable<T> {
+export interface IDoubleLinkedList<T> extends Iterable<T> {
   size: number
   isEmpty: boolean
 
