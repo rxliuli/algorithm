@@ -1,4 +1,5 @@
-import { LinkedNode, LinkedNodeUtil } from '../LinkedNode'
+import { LinkedNode} from '../LinkedNode'
+import { LinkedNodeUtil } from '../LinkedNodeUtil'
 
 describe('测试 LinkedNode', () => {
   describe('测试 LinkedNodeUtil', () => {

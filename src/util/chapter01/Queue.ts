@@ -1,4 +1,5 @@
-import { LinkedNode, LinkedNodeUtil } from './LinkedNode'
+import { LinkedNode} from './LinkedNode'
+import { LinkedNodeUtil } from './LinkedNodeUtil'
 
 export interface IQueue<T> extends Iterable<T> {
   isEmpty: boolean
