@@ -124,4 +124,14 @@ export class LinkedNodeUtil {
     node.next = null
     return node
   }
+
+  /**
+   * 接受两个链表结点作为参数，将第二个结点插入链表并使之成为第一个结点的后续结点（如果两个参数为空则什么也不做）
+   * @param a
+   * @param b
+   */
+  static insertAfter<T>(a: LinkedNode<T>, b: LinkedNode<T>) {
+    b.next = a.next
+    a.next = b
+  }
 }
