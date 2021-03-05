@@ -27,6 +27,7 @@ class LoopLinkedQueue<T> implements IQueue<T> {
     }
   }
 
+  //TODO 感觉这里的实现有优化空间
   dequeue(): T | null {
     if (this._size === 0) {
       return null
@@ -41,6 +42,7 @@ class LoopLinkedQueue<T> implements IQueue<T> {
     return res.value
   }
 
+  //TODO 感觉这里的实现有优化空间
   enqueue(item: T): void {
     if (this._size === 0) {
       this.last = { value: item, next: null }
