@@ -65,8 +65,7 @@ export class LinkedNodeUtil {
     const iter = this.iterator(node)
     let res: LinkedNode<T> | null = null
     for (let item of iter) {
-      item.next = { value: item.value, next: res }
-      res = item
+      res = { value: item.value, next: res }
     }
     return res
   }
