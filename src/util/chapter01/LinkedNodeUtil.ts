@@ -156,4 +156,30 @@ export class LinkedNodeUtil {
     }
     return first.next
   }
+
+  static max<T>(
+    node: LinkedNode<T>,
+    predicate: (a: LinkedNode<T>, b: LinkedNode<T>) => number,
+  ): T
+  static max<T>(
+    node: null,
+    predicate: (a: LinkedNode<T>, b: LinkedNode<T>) => number,
+  ): null
+  static max<T>(
+    node: LinkedNode<T> | null,
+    predicate: (a: LinkedNode<T>, b: LinkedNode<T>) => number,
+  ): T | null {
+    if (node === null) {
+      return null
+    }
+    let max = node
+    const iter = LinkedNodeUtil.iterator(node.next)
+    for (let item of iter) {
+      const res = predicate(max, item)
+      if (res < 0) {
+        max = item
+      }
+    }
+    return max.value
+  }
 }
