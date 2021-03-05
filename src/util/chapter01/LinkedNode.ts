@@ -92,4 +92,34 @@ export class LinkedNodeUtil {
     }
     return node
   }
+
+  /**
+   * 检查节点链条中包含符合指定表达式的第一个值
+   * @param node
+   * @param predicate
+   */
+  static find<T>(
+    node: LinkedNode<T>,
+    predicate: (val: T, next: LinkedNode<T> | null) => boolean,
+  ): LinkedNode<T> | null {
+    const iter = LinkedNodeUtil.iterator(node)
+    for (let item of iter) {
+      if (predicate(item.value, item.next)) {
+        return item
+      }
+    }
+    return null
+  }
+
+  /**
+   * 检查节点链条中是否包含符合指定表达式的值
+   * @param node
+   * @param predicate
+   */
+  static some<T>(
+    node: LinkedNode<T>,
+    predicate: (val: T, next: LinkedNode<T> | null) => boolean,
+  ): boolean {
+    return LinkedNodeUtil.find(node, predicate) !== null
+  }
 }
