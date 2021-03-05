@@ -5,25 +5,6 @@
 import { LinkedNode, LinkedNodeUtil } from '../LinkedNode'
 
 it('1.3.20', () => {
-  function f(node: LinkedNode<number>, k: number) {
-    const iter = LinkedNodeUtil.iterator(node)
-    let i = 1
-    let last: LinkedNode<number> | null = null
-    for (let item of iter) {
-      if (i === k) {
-        if (last === null) {
-          return node.next
-        }
-        console.log(last)
-        last!.next = last!.next!.next
-        break
-      }
-      last = item
-      i++
-    }
-    return node
-  }
-
   const node: LinkedNode<number> = Array(5)
     .fill(0)
     .reduce(
@@ -32,12 +13,12 @@ it('1.3.20', () => {
     )
 
   expect(
-    LinkedNodeUtil.values(f(LinkedNodeUtil.copy(node)!, 1)),
+    LinkedNodeUtil.values(LinkedNodeUtil.splice(LinkedNodeUtil.copy(node)!, 0)),
   ).toStrictEqual([2, 3, 4, 5])
   expect(
-    LinkedNodeUtil.values(f(LinkedNodeUtil.copy(node)!, 2)),
+    LinkedNodeUtil.values(LinkedNodeUtil.splice(LinkedNodeUtil.copy(node)!, 1)),
   ).toStrictEqual([1, 3, 4, 5])
   expect(
-    LinkedNodeUtil.values(f(LinkedNodeUtil.copy(node)!, 5)),
+    LinkedNodeUtil.values(LinkedNodeUtil.splice(LinkedNodeUtil.copy(node)!, 4)),
   ).toStrictEqual([1, 2, 3, 4])
 })

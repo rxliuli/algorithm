@@ -69,4 +69,27 @@ export class LinkedNodeUtil {
     }
     return res
   }
+
+  /**
+   * 删除某个位置的节点
+   * @param node
+   * @param k
+   */
+  static splice<T>(node: LinkedNode<T>, k: number): LinkedNode<T> | null {
+    const iter = LinkedNodeUtil.iterator(node)
+    let i = 0
+    let last: LinkedNode<T> | null = null
+    for (let item of iter) {
+      if (i === k) {
+        if (last === null) {
+          return node.next
+        }
+        last!.next = last!.next!.next
+        break
+      }
+      last = item
+      i++
+    }
+    return node
+  }
 }
