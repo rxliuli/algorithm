@@ -1,4 +1,4 @@
-import { LinkedNode} from './LinkedNode'
+import { LinkedNode } from './LinkedNode'
 import { LinkedNodeUtil } from './LinkedNodeUtil'
 
 export interface IQueue<T> extends Iterable<T> {
@@ -84,5 +84,21 @@ export class LinkedQueue<T> implements IQueue<T> {
       old!.next = this.last
     }
     this._size++
+  }
+}
+
+export class QueueUtil {
+  static clear<T extends IQueue<any>>(queue: T): T {
+    while (!queue.isEmpty) {
+      queue.dequeue()
+    }
+    return queue
+  }
+
+  static copy<T extends IQueue<any>>(queue: T, target: T): T {
+    while (!queue.isEmpty) {
+      target.enqueue(queue.dequeue()!)
+    }
+    return target
   }
 }

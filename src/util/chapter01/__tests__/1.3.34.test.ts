@@ -14,7 +14,7 @@ TODO 应该有某种更好的方式
  */
 
 import { IBag } from '../Bag'
-import { sortBy } from '@liuli-util/array'
+import { ArrayUtil } from '../ArrayUtil'
 
 class RandomBag<T> implements IBag<T> {
   private arr: T[] = []
@@ -29,8 +29,8 @@ class RandomBag<T> implements IBag<T> {
   }
 
   *[Symbol.iterator](): Iterator<T> {
-    const sortArr = sortBy(this.arr, () => Math.random() - 0.5)
-    for (let item of sortArr) {
+    const iter = ArrayUtil.shuffle(this.arr)
+    for (let item of iter) {
       yield item
     }
   }

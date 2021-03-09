@@ -11,9 +11,9 @@ export class ArrayUtil {
    *
    * 由于不能修改原值，这里采用一个折衷方案
    */
-  static *shuffle<T>(arr: T[]): Generator<T> {
-    const old = Array(arr.length)
-    for (let i = 0, len = arr.length; i < len; i++) {
+  static *shuffle<T>(arr: T[], len = arr.length): Generator<T> {
+    const old = Array(len)
+    for (let i = 0; i < len; i++) {
       const n = RandomUtil.integer(i, len)
       const v = old[n] ?? arr[n]
       yield v
