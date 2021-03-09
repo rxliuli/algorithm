@@ -470,6 +470,11 @@
   resolved "https://registry.npmjs.org/@liuli-util/array/-/array-3.1.0.tgz#2d3623d8c0b568a5e274a6a59583ec9b6bec17b6"
   integrity sha512-U2qWEaSlEBUYzO0WL6i0SuAO+6KiRRS5GsH1/6As0f1KHYQNhXNkIbLZjVyEm2AKl08ve5RfKw7c9lMIweF6wg==
 
+"@liuli-util/test@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@liuli-util/test/-/test-3.1.1.tgz#a6ba38790f7d8eda13ce627d64017576ad02b935"
+  integrity sha512-cugRQcpdaNSRqYNJiCOglEdB57GcKxmJvkf+stND5gTu8vEUXfSFrZ5ccHQuZCd+GxZhvlYRm4qc88esJOWSaA==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.2.tgz#858f5c4b48d80778fde4b9d541f27edc0d56488b"
