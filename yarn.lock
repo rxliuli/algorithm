@@ -465,10 +465,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@liuli-util/array@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@liuli-util/array/-/array-3.0.2.tgz#0da4b6d514dcc8700718eee3b79b5d2e05aac30d"
-  integrity sha512-whopWgo1CFzDfSKbK2OSA+9yyPy1ZsGg7GRzSSAc7ibPU56VZg2laFfOAwzOVw9/XTHhaExzsV3WX4HJMkLSeg==
+"@liuli-util/array@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@liuli-util/array/-/array-3.1.0.tgz#2d3623d8c0b568a5e274a6a59583ec9b6bec17b6"
+  integrity sha512-U2qWEaSlEBUYzO0WL6i0SuAO+6KiRRS5GsH1/6As0f1KHYQNhXNkIbLZjVyEm2AKl08ve5RfKw7c9lMIweF6wg==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
