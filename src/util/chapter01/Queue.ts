@@ -58,11 +58,8 @@ export class LinkedQueue<T> implements IQueue<T> {
     return this._size
   }
 
-  *[Symbol.iterator](): Generator<T> {
-    const iter = LinkedNodeUtil.iterator(this.first)
-    for (let item of iter) {
-      yield item.value
-    }
+  [Symbol.iterator](): Generator<T> {
+    return LinkedNodeUtil.iterator(this.first, (item) => item.value)
   }
 
   dequeue(): T | null {

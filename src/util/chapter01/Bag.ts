@@ -1,4 +1,4 @@
-import { LinkedNode} from './LinkedNode'
+import { LinkedNode } from './LinkedNode'
 import { LinkedNodeUtil } from './LinkedNodeUtil'
 
 export interface IBag<T> extends Iterable<T> {
@@ -42,11 +42,8 @@ export class LinkedBag<T> implements IBag<T> {
     return this._size
   }
 
-  *[Symbol.iterator](): Generator<T> {
-    const iter = LinkedNodeUtil.iterator(this.first)
-    for (let item of iter) {
-      yield item.value
-    }
+  [Symbol.iterator](): Generator<T> {
+    return LinkedNodeUtil.iterator(this.first, (item) => item.value)
   }
 
   add(item: T): void {

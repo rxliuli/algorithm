@@ -8,13 +8,21 @@ export class LinkedNodeUtil {
    * 迭代单向链表
    * @param node
    */
-  static *iterator<T>(node: LinkedNode<T> | null): Generator<LinkedNode<T>> {
+  static iterator<T>(node: LinkedNode<T> | null): Generator<LinkedNode<T>>
+  static iterator<T, R>(
+    node: LinkedNode<T> | null,
+    vFn: (node: LinkedNode<T>) => R,
+  ): Generator<R>
+  static *iterator<T>(
+    node: LinkedNode<T> | null,
+    vFn: (node: LinkedNode<T>) => any = (v) => v,
+  ): Generator<LinkedNode<T>> {
     for (
       let item: LinkedNode<T> | null = node;
       item !== null;
       item = item.next
     ) {
-      yield item
+      yield vFn(item)
     }
   }
 
@@ -23,12 +31,7 @@ export class LinkedNodeUtil {
    * @param node
    */
   static values<T>(node: LinkedNode<T> | null): T[] {
-    const iter = this.iterator(node)
-    const res: T[] = []
-    for (let item of iter) {
-      res.push(item.value)
-    }
-    return res
+    return [...this.iterator(node, (item) => item.value)]
   }
 
   /**

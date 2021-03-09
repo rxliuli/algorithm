@@ -46,11 +46,8 @@ export class DoubleLinkedList<T> implements IDoubleLinkedList<T> {
     return this.size === 0
   }
 
-  *[Symbol.iterator](): Iterator<T> {
-    const iter = LinkedNodeUtil.iterator(this.first)
-    for (let item of iter) {
-      yield item.value
-    }
+  [Symbol.iterator](): Iterator<T> {
+    return LinkedNodeUtil.iterator(this.first, (item) => item.value)
   }
 
   pop(): T | null {
