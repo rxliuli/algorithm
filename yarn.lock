@@ -470,10 +470,20 @@
   resolved "https://registry.npmjs.org/@liuli-util/array/-/array-3.1.0.tgz#2d3623d8c0b568a5e274a6a59583ec9b6bec17b6"
   integrity sha512-U2qWEaSlEBUYzO0WL6i0SuAO+6KiRRS5GsH1/6As0f1KHYQNhXNkIbLZjVyEm2AKl08ve5RfKw7c9lMIweF6wg==
 
+"@liuli-util/async@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@liuli-util/async/-/async-3.1.1.tgz#dd96e9924b5e87704e7929086de3ff9a8857f185"
+  integrity sha512-1CT1mopFdJLsBxo9zpLOIICn+KYbrDl+aSCeExrJvHlW59Sh8kdsF4kXFzql8uxo1kNEDmTZlxoH3CSFxfnIrg==
+
 "@liuli-util/test@^3.1.1":
   version "3.1.1"
   resolved "https://registry.npmjs.org/@liuli-util/test/-/test-3.1.1.tgz#a6ba38790f7d8eda13ce627d64017576ad02b935"
   integrity sha512-cugRQcpdaNSRqYNJiCOglEdB57GcKxmJvkf+stND5gTu8vEUXfSFrZ5ccHQuZCd+GxZhvlYRm4qc88esJOWSaA==
+
+"@liuli-util/tree@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@liuli-util/tree/-/tree-3.1.0.tgz#4095782f536d7cba2db9483e31669a94c0f3c16c"
+  integrity sha512-zI+ibna4W0VcKcsTwM1wu4dMRZoqvy2atWWfDipG5SBVL5gH7HpTOnI8SWu5CKshbDlCkIyen3n45pcgAfhYBQ==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
@@ -527,10 +537,10 @@
   resolved "https://registry.yarnpkg.com/@types/benchmark/-/benchmark-2.1.0.tgz#157e2ef22311d3140fb33e82a938a1beb26e78e0"
   integrity sha512-wxT2/LZn4z0NvSfZirxmBx686CU7EXp299KHkIk79acXpQtgeYHrslFzDacPGXifC0Pe3CEaLup07bgY1PnuQw==
 
-"@types/fs-extra@^9.0.1":
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.7.tgz#a9ef2ffdab043def080c5bec94c03402f793577f"
-  integrity sha512-YGq2A6Yc3bldrLUlm17VNWOnUbnEzJ9CMgOeLFtQF3HOCN5lQBO8VyjG00a5acA5NNSM30kHVGp1trZgnVgi1Q==
+"@types/fs-extra@^9.0.8":
+  version "9.0.8"
+  resolved "https://registry.npmjs.org/@types/fs-extra/-/fs-extra-9.0.8.tgz#32c3c07ddf8caa5020f84b5f65a48470519f78ba"
+  integrity sha512-bnlTVTwq03Na7DpWxFJ1dvnORob+Otb8xHyUqUWhqvz/Ksg8+JXPlR52oeMSZ37YEOa5PyccbgUNutiQdi13TA==
   dependencies:
     "@types/node" "*"
 
@@ -1555,9 +1565,9 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-fs-extra@^9.0.1:
+fs-extra@^9.1.0:
   version "9.1.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
+  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
   dependencies:
     at-least-node "^1.0.0"
