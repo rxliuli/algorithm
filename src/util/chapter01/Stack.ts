@@ -40,15 +40,6 @@ export class Stack<T> implements IStack<T> {
       yield this.arr[i]
     }
   }
-
-  static copy<T>(stack: Stack<T>): Stack<T> {
-    const arr = [...stack]
-    const res = new Stack<T>()
-    for (let i = arr.length - 1; i >= 0; i--) {
-      res.push(arr[i])
-    }
-    return res
-  }
 }
 
 export class LinkedStack<T> implements IStack<T> {
@@ -83,5 +74,22 @@ export class LinkedStack<T> implements IStack<T> {
       next: this.first,
     }
     this._size++
+  }
+}
+
+export class StackUtil {
+  static clear<T extends IStack<any>>(stack: T): T {
+    while (!stack.isEmpty) {
+      stack.pop()
+    }
+    return stack
+  }
+
+  static copy<T extends IStack<any>>(stack: T, target: T): T {
+    const arr = [...stack]
+    for (let i = arr.length - 1; i >= 0; i--) {
+      target.push(arr[i])
+    }
+    return target
   }
 }
