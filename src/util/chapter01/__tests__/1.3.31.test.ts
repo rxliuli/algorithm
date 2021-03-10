@@ -79,4 +79,19 @@ describe('1.3.31', () => {
     expect(list.remove(0)).toBe(1)
     expect(list.isEmpty).toBeTruthy()
   })
+  it('测试 remove 的边界情况（删除再添加）', () => {
+    const list = new DoubleLinkedList<number>()
+    list.push(1)
+    list.push(2)
+    list.push(3)
+    expect([...list]).toEqual([1, 2, 3])
+
+    list.remove(1)
+    list.push(2)
+    expect([...list]).toEqual([1, 3, 2])
+
+    list.remove(2)
+    list.push(2)
+    expect([...list]).toEqual([1, 3, 2])
+  })
 })

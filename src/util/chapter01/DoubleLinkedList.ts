@@ -187,12 +187,12 @@ export class DoubleLinkedList<T> implements IDoubleLinkedList<T> {
     for (const item of iter) {
       if (i === index) {
         if (item.prev === null) {
-          this.first = null
+          this.first = this.first!.next
         } else {
           item.prev.next = item.next
         }
         if (item.next === null) {
-          this.last = null
+          this.last = this.last!.prev
         } else {
           item.next.prev = item.prev
         }
