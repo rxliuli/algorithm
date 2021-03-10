@@ -46,9 +46,9 @@ export class Queue<T> implements IQueue<T> {
 }
 
 export class LinkedQueue<T> implements IQueue<T> {
-  private first: LinkedNode<T> | null = null
-  private last: LinkedNode<T> | null = null
-  private _size = 0
+  protected first: LinkedNode<T> | null = null
+  protected last: LinkedNode<T> | null = null
+  protected _size = 0
 
   get isEmpty() {
     return this.size === 0

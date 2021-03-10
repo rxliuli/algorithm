@@ -43,8 +43,8 @@ export class Stack<T> implements IStack<T> {
 }
 
 export class LinkedStack<T> implements IStack<T> {
-  private first: LinkedNode<T> | null = null
-  private _size = 0
+  protected first: LinkedNode<T> | null = null
+  protected _size = 0
 
   get isEmpty() {
     return this.size === 0
