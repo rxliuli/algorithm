@@ -91,6 +91,31 @@ export class LinkedNodeUtil {
   }
 
   /**
+   * 删除第一个符合条件的节点
+   * @param node
+   * @param value
+   */
+  static removeFirst<T>(
+    node: LinkedNode<T> | null,
+    value: T,
+  ): LinkedNode<T> | null {
+    const iter = LinkedNodeUtil.iterator(node)
+    let last: LinkedNode<T> | null = null
+    for (let item of iter) {
+      if (value === item.value) {
+        if (last === null) {
+          return node!.next
+        } else {
+          last!.next = last!.next!.next
+        }
+        break
+      }
+      last = item
+    }
+    return node
+  }
+
+  /**
    * 检查节点链条中包含符合指定表达式的第一个值
    * @param node
    * @param predicate
