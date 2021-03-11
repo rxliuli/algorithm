@@ -1,6 +1,6 @@
 import { LinkedNodeUtil } from './LinkedNodeUtil'
 
-interface DoubleLinkedNode<T> {
+export interface DoubleLinkedNode<T> {
   value: T
   next: DoubleLinkedNode<T> | null
   prev: DoubleLinkedNode<T> | null
@@ -34,9 +34,9 @@ export interface IDoubleLinkedList<T> extends Iterable<T> {
 }
 
 export class DoubleLinkedList<T> implements IDoubleLinkedList<T> {
-  private first: DoubleLinkedNode<T> | null = null
-  private last: DoubleLinkedNode<T> | null = null
-  private _size = 0
+  protected first: DoubleLinkedNode<T> | null = null
+  protected last: DoubleLinkedNode<T> | null = null
+  protected _size = 0
 
   get size() {
     return this._size
