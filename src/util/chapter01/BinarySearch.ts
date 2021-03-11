@@ -2,27 +2,32 @@
  * 二分搜索
  */
 export class BinarySearch {
+  static searchSortArrayByRange(
+    arr: number[],
+    v: number,
+    l: number,
+    r: number,
+  ): number {
+    if (l > r) {
+      return -1
+    }
+    const i = Math.floor((l + r) / 2)
+    if (arr[i] === v) {
+      return i
+    } else if (arr[i] > v) {
+      return BinarySearch.searchSortArrayByRange(arr, v, l, i - 1)
+    } else {
+      return BinarySearch.searchSortArrayByRange(arr, v, i + 1, r)
+    }
+  }
+
   /**
    * 搜索有序的一维数组
    * @param arr
    * @param v
    */
   static searchSortArray(arr: number[], v: number): number {
-    function f(l: number, r: number): number {
-      if (l > r) {
-        return -1
-      }
-      const i = Math.floor((l + r) / 2)
-      if (arr[i] === v) {
-        return i
-      } else if (arr[i] > v) {
-        return f(l, i - 1)
-      } else {
-        return f(i + 1, r)
-      }
-    }
-
-    return f(0, arr.length - 1)
+    return this.searchSortArrayByRange(arr, v, 0, arr.length - 1)
   }
 
   /**
