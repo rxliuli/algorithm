@@ -20,6 +20,10 @@ describe('测试 BinarySearch', () => {
       const res = BinarySearch.searchSortArray([1], 1)
       expect(res).toBe(0)
     })
+    it('测试存在相同元素的数组', () => {
+      expect(BinarySearch.searchSortArray([1, 2, 2, 3], 2)).toBe(1)
+      expect(BinarySearch.searchSortArray([1, 2, 2, 3, 4], 2)).toBe(2)
+    })
   })
   describe('搜索有序的二维矩阵', () => {
     function testFunc(
