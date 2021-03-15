@@ -1,5 +1,7 @@
 import { RandomUtil } from './RandomUtil'
 
+type FlatArrayItem<T> = T extends (infer U)[] ? FlatArrayItem<U> : T
+
 export class ArrayUtil {
   /**
    * 随机的迭代器
@@ -21,5 +23,16 @@ export class ArrayUtil {
         old[n] = old[i] ?? arr[i]
       }
     }
+  }
+
+  /**
+   * 深层将数组压平
+   * @param arr
+   */
+  static flat<T>(arr: T[]): FlatArrayItem<T>[] {
+    if (!Array.isArray(arr)) {
+      return [arr]
+    }
+    return arr.reduce((res: any[], a) => res.concat(this.flat(a as any)), [])
   }
 }
