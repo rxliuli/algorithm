@@ -1,5 +1,6 @@
 /*
 1.4.11　为 StaticSETofInts（请见表 1.2.15）添加一个实例方法 howMany()，找出给定键的出现次数且在最坏情况下所需的运行时间和 \log N 成正比。
+TODO 还需优化
  */
 
 import { sortBy } from '@liuli-util/array'
