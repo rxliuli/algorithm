@@ -1,3 +1,5 @@
+import { OrderItemComparator } from './OrderItemComparator'
+
 /**
  * 二分搜索
  */
@@ -9,27 +11,43 @@ export class BinarySearch {
    */
   static searchSortArray(arr: number[], v: number): number
   static searchSortArray(arr: number[], v: number, l: number, r: number): number
-  static searchSortArray(
-    arr: number[],
-    v: number,
+  static searchSortArray<T>(
+    arr: T[],
+    comparator: OrderItemComparator<T>,
+  ): number
+  static searchSortArray<T>(
+    arr: T[],
+    comparator: OrderItemComparator<T>,
+    l: number,
+    r: number,
+  ): number
+  static searchSortArray<T>(
+    arr: T[],
+    comparator: OrderItemComparator<T> | number,
     l: number = 0,
     r: number = arr.length - 1,
   ): number {
-    function f(arr: number[], v: number, l: number, r: number): number {
+    const fn: OrderItemComparator<T> =
+      typeof comparator === 'number'
+        ? (v: number) => v - comparator
+        : (comparator as any)
+
+    function f(l: number, r: number): number {
       if (l > r) {
         return -1
       }
       const i = Math.floor((l + r) / 2)
-      if (arr[i] === v) {
+      const res = fn(arr[i])
+      if (res === 0) {
         return i
-      } else if (arr[i] > v) {
-        return f(arr, v, l, i - 1)
+      } else if (res > 0) {
+        return f(l, i - 1)
       } else {
-        return f(arr, v, i + 1, r)
+        return f(i + 1, r)
       }
     }
 
-    return f(arr, v, l, r)
+    return f(l, r)
   }
 
   static searchSortArrayRange(
