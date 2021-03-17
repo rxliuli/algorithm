@@ -31,6 +31,76 @@ export class BinarySearch {
   }
 
   /**
+   * 找出给定键的第一次出现和最后一次出现的为止且在最坏情况下所需的运行时间和 log N 成正比
+   * @param arr
+   * @param v
+   */
+  static searchSortArrayRange(
+    arr: number[],
+    v: number,
+  ): [left: number, right: number] | null {
+    function find(
+      l: number,
+      r: number,
+    ): [index: number, left: number, right: number] | null {
+      if (l > r) {
+        return null
+      }
+      const i = Math.floor((l + r) / 2)
+      if (arr[i] === v) {
+        return [i, l, r]
+      } else if (arr[i] > v) {
+        return find(l, i - 1)
+      } else {
+        return find(i + 1, r)
+      }
+    }
+
+    function findMin(l: number, r: number): number {
+      if (l > r) {
+        return -1
+      }
+      const i = Math.floor((l + r) / 2)
+      if (arr[i] === v) {
+        if (l === i) {
+          return i
+        }
+        return findMin(l, i)
+      } else if (arr[i] > v) {
+        return findMin(l, i - 1)
+      } else {
+        return findMin(i + 1, r)
+      }
+    }
+
+    function findMax(l: number, r: number): number {
+      if (l > r) {
+        return -1
+      }
+      const i = Math.ceil((l + r) / 2)
+      if (arr[i] === v) {
+        if (i === r) {
+          return i
+        }
+        return findMax(l, i)
+      } else if (arr[i] > v) {
+        return findMax(l, i - 1)
+      } else {
+        return findMax(i + 1, r)
+      }
+    }
+
+    const res = find(0, arr.length)
+    if (res == null) {
+      return null
+    }
+    const [index, left, right] = res
+    const min = findMin(left, index)
+    const max = findMax(index, right)
+    return [min, max]
+  }
+
+  /**
    * 搜索排好序的二维矩阵
    * leetcode 原题
    * @Link https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
