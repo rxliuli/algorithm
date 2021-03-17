@@ -6,7 +6,7 @@ import { BinarySearch } from '../BinarySearch'
 import { RandomUtil } from '../RandomUtil'
 import { uniqueBy } from '@liuli-util/array'
 
-function twoSum(arr: number[], sum: number): [number, number][] {
+export function twoSum(arr: number[], sum: number): [number, number][] {
   const res: [number, number][] = []
   arr.sort()
   for (let i = 0, len = arr.length; i < len; i++) {
