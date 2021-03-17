@@ -11,7 +11,7 @@ function twoSum(arr: number[], sum: number): [number, number][] {
   arr.sort()
   for (let i = 0, len = arr.length; i < len; i++) {
     const v = arr[i]
-    const k = BinarySearch.searchSortArrayByRange(arr, sum - v, i, len)
+    const k = BinarySearch.searchSortArray(arr, sum - v, i, len)
     if (k !== -1) {
       res.push([i, k])
     }

@@ -2,42 +2,58 @@
  * 二分搜索
  */
 export class BinarySearch {
-  static searchSortArrayByRange(
-    arr: number[],
-    v: number,
-    l: number,
-    r: number,
-  ): number {
-    if (l > r) {
-      return -1
-    }
-    const i = Math.floor((l + r) / 2)
-    if (arr[i] === v) {
-      return i
-    } else if (arr[i] > v) {
-      return BinarySearch.searchSortArrayByRange(arr, v, l, i - 1)
-    } else {
-      return BinarySearch.searchSortArrayByRange(arr, v, i + 1, r)
-    }
-  }
-
   /**
    * 搜索有序的一维数组
    * @param arr
    * @param v
    */
-  static searchSortArray(arr: number[], v: number): number {
-    return this.searchSortArrayByRange(arr, v, 0, arr.length - 1)
+  static searchSortArray(arr: number[], v: number): number
+  static searchSortArray(arr: number[], v: number, l: number, r: number): number
+  static searchSortArray(
+    arr: number[],
+    v: number,
+    l: number = 0,
+    r: number = arr.length - 1,
+  ): number {
+    function f(arr: number[], v: number, l: number, r: number): number {
+      if (l > r) {
+        return -1
+      }
+      const i = Math.floor((l + r) / 2)
+      if (arr[i] === v) {
+        return i
+      } else if (arr[i] > v) {
+        return f(arr, v, l, i - 1)
+      } else {
+        return f(arr, v, i + 1, r)
+      }
+    }
+
+    return f(arr, v, l, r)
   }
 
+  static searchSortArrayRange(
+    arr: number[],
+    v: number,
+  ): [left: number, right: number] | null
+  static searchSortArrayRange(
+    arr: number[],
+    v: number,
+    l: number,
+    r: number,
+  ): [left: number, right: number] | null
   /**
    * 找出给定键的第一次出现和最后一次出现的为止且在最坏情况下所需的运行时间和 log N 成正比
    * @param arr
    * @param v
+   * @param l
+   * @param r
    */
   static searchSortArrayRange(
     arr: number[],
     v: number,
+    l: number = 0,
+    r: number = arr.length - 1,
   ): [left: number, right: number] | null {
     function find(
       l: number,
@@ -90,7 +106,7 @@ export class BinarySearch {
       }
     }
 
-    const res = find(0, arr.length)
+    const res = find(l, r)
     if (res == null) {
       return null
     }

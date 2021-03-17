@@ -55,12 +55,7 @@ describe('1.4.8', () => {
       let res = 0
       for (let i = 0; i < arr.length; i++) {
         const v = arr[i]
-        const idx = BinarySearch.searchSortArrayByRange(
-          arr,
-          v,
-          i + 1,
-          arr.length,
-        )
+        const idx = BinarySearch.searchSortArray(arr, v, i + 1, arr.length)
         if (idx === -1) {
           continue
         }
@@ -79,4 +74,5 @@ describe('1.4.8', () => {
 
     testF(f)
   })
+  it('使用二分搜索（包括查找周围相同的元素）', () => {})
 })
