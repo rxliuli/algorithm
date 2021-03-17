@@ -25,6 +25,16 @@ describe('测试 BinarySearch', () => {
       expect(BinarySearch.searchSortArray([1, 2, 2, 3, 4], 2)).toBe(2)
     })
   })
+  describe('测试 searchSortArrayRange', () => {
+    it('测试异常情况-找到 [3,-1]', () => {
+      const arr = [1, 2, 3, 4, 4, 6]
+      // console.log(BinarySearch.searchSortArray(arr, 4, 0, 5))
+      // console.log(BinarySearch.findMin(arr, 4, 0, 5))
+      // console.log(BinarySearch.findMax(arr, 4, 0, 5))
+      const res = BinarySearch.searchSortArrayRange(arr, 4)
+      expect(res).toEqual([3, 4])
+    })
+  })
   describe('搜索有序的二维矩阵', () => {
     function testFunc(
       f: (arr: number[][], v: number) => [number, number] | null,

@@ -32,6 +32,50 @@ export class BinarySearch {
     return f(arr, v, l, r)
   }
 
+  private static findMax(
+    arr: number[],
+    v: number,
+    l: number,
+    r: number,
+  ): number {
+    if (l > r) {
+      return -1
+    }
+    const i = Math.ceil((l + r) / 2)
+    if (arr[i] === v) {
+      if (i === r) {
+        return i
+      }
+      return BinarySearch.findMax(arr, v, i, r)
+    } else if (arr[i] > v) {
+      return BinarySearch.findMax(arr, v, l, i - 1)
+    } else {
+      return BinarySearch.findMax(arr, v, i + 1, r)
+    }
+  }
+
+  private static findMin(
+    arr: number[],
+    v: number,
+    l: number,
+    r: number,
+  ): number {
+    if (l > r) {
+      return -1
+    }
+    const i = Math.floor((l + r) / 2)
+    if (arr[i] === v) {
+      if (l === i) {
+        return i
+      }
+      return BinarySearch.findMin(arr, v, l, i)
+    } else if (arr[i] > v) {
+      return BinarySearch.findMin(arr, v, l, i - 1)
+    } else {
+      return BinarySearch.findMin(arr, v, i + 1, r)
+    }
+  }
+
   static searchSortArrayRange(
     arr: number[],
     v: number,
@@ -72,47 +116,13 @@ export class BinarySearch {
       }
     }
 
-    function findMin(l: number, r: number): number {
-      if (l > r) {
-        return -1
-      }
-      const i = Math.floor((l + r) / 2)
-      if (arr[i] === v) {
-        if (l === i) {
-          return i
-        }
-        return findMin(l, i)
-      } else if (arr[i] > v) {
-        return findMin(l, i - 1)
-      } else {
-        return findMin(i + 1, r)
-      }
-    }
-
-    function findMax(l: number, r: number): number {
-      if (l > r) {
-        return -1
-      }
-      const i = Math.ceil((l + r) / 2)
-      if (arr[i] === v) {
-        if (i === r) {
-          return i
-        }
-        return findMax(l, i)
-      } else if (arr[i] > v) {
-        return findMax(l, i - 1)
-      } else {
-        return findMax(i + 1, r)
-      }
-    }
-
     const res = find(l, r)
     if (res == null) {
       return null
     }
     const [index, left, right] = res
-    const min = findMin(left, index)
-    const max = findMax(index, right)
+    const min = BinarySearch.findMin(arr, v, left, index)
+    const max = BinarySearch.findMax(arr, v, index, right)
     return [min, max]
   }
 
