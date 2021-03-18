@@ -42,4 +42,7 @@ describe('1.4.15', () => {
 
     testTwoSum(twoSumFaster)
   })
+  it('实现快速的 threeSumFaster', () => {
+    // TODO 待定
+  })
 })
