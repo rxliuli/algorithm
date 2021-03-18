@@ -8,7 +8,7 @@ import { sortBy } from '@liuli-util/array'
 describe('1.4.16', () => {
   function testF(f: (arr: number[]) => [number, number] | null) {
     expect(f([1, 2, 3, 3, 5])).toEqual([3, 3])
-    expect(f([])).toBeNull()
+    expect(() => f([])).toThrowError()
     const arr = RandomUtil.array(100, () => RandomUtil.integer(10000))
     const expectRes = arr
       .flatMap((v, i) =>
@@ -23,26 +23,27 @@ describe('1.4.16', () => {
   }
 
   it('双重循环实现', () => {
-    function f(arr: number[]): [number, number] | null {
+    function f(arr: number[]): [number, number] {
       if (arr.length < 2) {
-        return null
+        throw new Error('数组至少需要两个元素')
       }
-      let diff: number | null = null
-      const res: [number, number] = Array(2) as any
-      for (let i = 0; i < arr.length; i++) {
+      let [l, r] = arr
+      let diff: number = Math.abs(l - r)
+
+      for (let i = 1; i < arr.length; i++) {
         for (let j = i + 1; j < arr.length; j++) {
           const num = Math.abs(arr[i] - arr[j])
-          if (diff === null || num < diff) {
+          if (num < diff) {
             diff = num
-            res[0] = arr[i]
-            res[1] = arr[j]
+            l = arr[i]
+            r = arr[j]
             if (diff === 0) {
               break
             }
           }
         }
       }
-      return res
+      return [l, r]
     }
 
     testF(f)
@@ -53,29 +54,29 @@ describe('1.4.16', () => {
      * 排序后遍历查找，但其实会更容易找到小的值（如果存在多个符合条件的元组）
      * @param arr
      */
-    function f(arr: number[]): [number, number] | null {
+    function f(arr: number[]): [number, number] {
       if (arr.length < 2) {
-        return null
+        throw new Error('数组至少需要两个元素')
       }
-
       arr = sortBy(arr)
 
-      let diff: number | null = null
-      const res: [number, number] = Array(2) as any
-      for (let i = 0; i < arr.length - 1; i++) {
+      let [l, r] = arr
+      let diff: number = Math.abs(l - r)
+
+      for (let i = 1; i < arr.length - 1; i++) {
         const v = arr[i]
         const next = arr[i + 1]
         const num = Math.abs(v - next)
-        if (diff === null || num < diff) {
+        if (num < diff) {
           diff = num
-          res[0] = v
-          res[1] = next
+          l = v
+          r = next
           if (diff === 0) {
             break
           }
         }
       }
-      return res
+      return [l, r]
     }
 
     testF(f)
