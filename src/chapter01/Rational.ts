@@ -27,6 +27,11 @@ interface IRational {
   equals(that: IRational): boolean
 
   /**
+   * 比较两个有理数
+   */
+  compare(that: IRational): 1 | 0 | -1
+
+  /**
    * 对象的字符串表示
    */
   toString(): string
@@ -81,9 +86,12 @@ export class Rational implements IRational {
   }
 
   equals(that: Rational): boolean {
-    return (
-      this.numerator === that.numerator && this.denominator === that.denominator
-    )
+    return this.compare(that) === 0
+  }
+
+  compare(that: Rational): 1 | 0 | -1 {
+    const res = this.minus(that).numerator
+    return res === 0 ? 0 : res > 0 ? 1 : -1
   }
 
   toString(): string {
