@@ -1,3 +1,12 @@
+type BinarySearchSortArrayOptions = {
+  /** 区间的左边界 */
+  l?: number
+  /** 区间的右边界 */
+  r?: number
+  /** 顺序是递增还是递减 */
+  order?: 'asc' | 'desc'
+}
+
 /**
  * 二分搜索
  */
@@ -8,12 +17,28 @@ export class BinarySearch {
    * @param v
    */
   static searchSortArray(arr: number[], v: number): number
-  static searchSortArray(arr: number[], v: number, l: number, r: number): number
+  /**
+   * 搜索有序的一维数组
+   * @param arr
+   * @param v
+   * @param options
+   * @param options.l
+   * @param options.r
+   * @param options.order
+   */
   static searchSortArray(
     arr: number[],
     v: number,
-    l: number = 0,
-    r: number = arr.length - 1,
+    options?: BinarySearchSortArrayOptions,
+  ): number
+  static searchSortArray(
+    arr: number[],
+    v: number,
+    {
+      l = 0,
+      r = arr.length - 1,
+      order = 'asc',
+    }: BinarySearchSortArrayOptions = {},
   ): number {
     function f(arr: number[], v: number, l: number, r: number): number {
       if (l > r) {
@@ -22,7 +47,10 @@ export class BinarySearch {
       const i = Math.floor((l + r) / 2)
       if (arr[i] === v) {
         return i
-      } else if (arr[i] > v) {
+      } else if (
+        (arr[i] > v && order === 'asc') ||
+        (arr[i] < v && order === 'desc')
+      ) {
         return f(arr, v, l, i - 1)
       } else {
         return f(arr, v, i + 1, r)

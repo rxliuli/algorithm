@@ -24,6 +24,13 @@ describe('测试 BinarySearch', () => {
       expect(BinarySearch.searchSortArray([1, 2, 2, 3], 2)).toBe(1)
       expect(BinarySearch.searchSortArray([1, 2, 2, 3, 4], 2)).toBe(2)
     })
+    it('测试搜索递减的数组', () => {
+      expect(
+        BinarySearch.searchSortArray([4, 3, 2, 1], 2, {
+          order: 'desc',
+        }),
+      ).toBe(2)
+    })
   })
   describe('测试 searchSortArrayRange', () => {
     it('测试异常情况-找到 [3,-1]', () => {

@@ -55,7 +55,10 @@ describe('1.4.8', () => {
       let res = 0
       for (let i = 0; i < arr.length; i++) {
         const v = arr[i]
-        const idx = BinarySearch.searchSortArray(arr, v, i + 1, arr.length)
+        const idx = BinarySearch.searchSortArray(arr, v, {
+          l: i + 1,
+          r: arr.length,
+        })
         if (idx === -1) {
           continue
         }
