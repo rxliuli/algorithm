@@ -32,7 +32,7 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
-      "./src/__tests__/extend.ts"
+      "./src/util/extend.ts"
     ]
   },
   "devDependencies": {
