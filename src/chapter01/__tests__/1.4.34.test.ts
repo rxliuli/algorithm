@@ -10,7 +10,6 @@ describe('1.4.34', () => {
     return jest.fn((i: number) => {
       const prev = Math.abs(last - res)
       const curr = Math.abs(i - res)
-      console.log(i, prev, curr)
       last = i
       if (curr === 0) {
         return 0
@@ -95,5 +94,9 @@ describe('1.4.34', () => {
     const res = RandomUtil.integer(max)
     const mockF = genMockF(res)
     expect(search(max, mockF)).toBe(res)
+  })
+
+  it('1lgN 实现', () => {
+    // TODO 待定
   })
 })
