@@ -37,7 +37,7 @@ describe('测试 UF', () => {
     testF(UFWithWeightedQuickUnionPathCompression)
   })
 })
-describe('性能测试', () => {
+describe.skip('性能测试', () => {
   async function testF(
     clazz: Class<IUF>,
     count: number,
