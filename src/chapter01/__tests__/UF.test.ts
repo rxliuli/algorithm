@@ -10,31 +10,31 @@ import path from 'path'
 import { Class } from 'type-fest'
 import { segmentation } from '@liuli-util/array'
 
+export function testUF(clazz: Class<IUF>) {
+  const uf = new clazz(10)
+  expect(uf.count()).toBe(10)
+  expect(uf.connected(1, 2)).toBeFalsy()
+  uf.union(1, 2)
+  expect(uf.connected(1, 2)).toBeTruthy()
+  expect(uf.find(1)).toBe(2)
+  expect(uf.count()).toBe(9)
+
+  //测试同一个数字
+  expect(uf.connected(3, 3)).toBeTruthy()
+}
+
 describe('测试 UF', () => {
-  function testF(clazz: Class<IUF>) {
-    const uf = new clazz(10)
-    expect(uf.count()).toBe(10)
-    expect(uf.connected(1, 2)).toBeFalsy()
-    uf.union(1, 2)
-    expect(uf.connected(1, 2)).toBeTruthy()
-    expect(uf.find(1)).toBe(2)
-    expect(uf.count()).toBe(9)
-
-    //测试同一个数字
-    expect(uf.connected(3, 3)).toBeTruthy()
-  }
-
   it('测试 UFWithQuickFind', () => {
-    testF(UFWithQuickFind)
+    testUF(UFWithQuickFind)
   })
   it('测试 UFWithQuickUnion', () => {
-    testF(UFWithQuickUnion)
+    testUF(UFWithQuickUnion)
   })
   it('测试 UFWithWeightedQuickUnion', () => {
-    testF(UFWithWeightedQuickUnion)
+    testUF(UFWithWeightedQuickUnion)
   })
   it.skip('测试 UFWithWeightedQuickUnionPathCompression', () => {
-    testF(UFWithWeightedQuickUnionPathCompression)
+    testUF(UFWithWeightedQuickUnionPathCompression)
   })
 })
 describe.skip('性能测试', () => {
