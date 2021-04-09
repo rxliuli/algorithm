@@ -1,6 +1,6 @@
 import { TreeOption } from './treeOption'
 
-type ReType<T, K extends string> = T & { [P in K]?: ReType<T, K>[] }
+export type ReType<T, K extends string> = T & { [P in K]?: ReType<T, K>[] }
 
 /**
  * 将列表转为树
