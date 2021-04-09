@@ -21,3 +21,4 @@ package-lock.json
 
 # build dist
 *.tgz
+**/__tests__/temp
