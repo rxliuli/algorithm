@@ -11,7 +11,7 @@ class UF extends UFWithWeightedQuickUnion implements StatisticsUF {
   private _szSize = 0
 
   /**
-   * 访问数组 (路径长度 - 1) * 2 + 1 或者 路径长度
+   * 访问数组 路径长度 * 2 + 1 或者 路径长度
    * @param p
    */
   find(p: number): number {

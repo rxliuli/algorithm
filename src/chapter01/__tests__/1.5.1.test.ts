@@ -8,6 +8,7 @@ import { Class } from 'type-fest'
 export interface StatisticsUF {
   readonly idList: number[]
   size: number
+  szSize?: number
 }
 
 export function testStatisticsUF(
@@ -30,12 +31,14 @@ export function testStatisticsUF(
       res.push({
         list: [...uf.idList],
         size: uf.size,
+        szSize: uf.szSize,
       })
       return res
     },
     [] as {
       list: number[]
       size: number
+      szSize?: number
     }[],
   )
   return res
