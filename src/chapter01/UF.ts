@@ -11,6 +11,7 @@ export interface IUF {
 
   /**
    * 如果 p 和 q 存在于同一个分量中则返回 true
+   * @deprecated 应该使用 {@link find}
    */
   connected(p: number, q: number): boolean
 

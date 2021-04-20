@@ -11,6 +11,7 @@ public void union(int p, int q)
    count--;
 }
 
+这种做法会导致当 i=p 时，id[p] 会被修改，之后原本与 id[p] 相等的值都不会被修改
 ```
  */
 
@@ -31,4 +32,12 @@ class UF extends UFWithQuickFind {
   }
 }
 
-it('1.5.8', () => {})
+it('1.5.8', () => {
+  const uf = new UF(10)
+  uf.union(0, 1)
+  expect(uf.connected(0, 1)).toBeTruthy()
+  uf.union(0, 2)
+  expect(uf.connected(0, 1)).toBeFalsy()
+  uf.union(0, 3)
+  expect(uf.connected(0, 2)).toBeFalsy()
+})
