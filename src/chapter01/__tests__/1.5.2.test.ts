@@ -4,7 +4,7 @@
 
 import { UFWithQuickUnion } from '../UF'
 import { StatisticsUF, testStatisticsUF } from './1.5.1.test'
-import { UFUtil } from './1.5.12.test'
+import { UFUtil } from '../UFUtil'
 
 class UF extends UFWithQuickUnion implements StatisticsUF {
   private _size = 0

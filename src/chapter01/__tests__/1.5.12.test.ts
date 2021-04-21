@@ -4,35 +4,7 @@
 
 import { UFWithWeightedQuickUnion } from '../UF'
 import { testUF } from './UF.test'
-import { listToTree, ReType } from '../../util/listToTree'
-import { treeMap } from '@liuli-util/tree'
-
-export class UFUtil {
-  static convertTree<R extends ReType<{ id: number }, 'children'>>(
-    idList: number[],
-  ): R[] {
-    const nodeList = idList.map((v, i) => ({
-      id: i,
-      parent: v === i ? null : v,
-    }))
-    let tree = listToTree(nodeList, {
-      children: 'children',
-      id: 'id',
-      parentId: 'parent',
-    })
-    return treeMap(
-      tree,
-      (node) => {
-        const { parent, ...rest } = node
-        return rest
-      },
-      {
-        id: 'id',
-        children: 'children',
-      },
-    ) as R[]
-  }
-}
+import { UFUtil } from '../UFUtil'
 
 class UF extends UFWithWeightedQuickUnion {
   /**
@@ -69,6 +41,7 @@ describe('1.5.12', () => {
       [3, 7],
     ].forEach(([k, v]) => uf.union(k, v))
     const res = UFUtil.convertTree(uf.idList)
+    console.log(JSON.stringify(res))
     expect(res[0].children![0].children![0].children![0]).toEqual({
       id: 0,
     })

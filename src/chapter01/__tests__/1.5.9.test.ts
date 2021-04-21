@@ -5,10 +5,10 @@ id=[1,1,3,1,5,6,1,3,4,5]
 quick-union 可能，加权 quick-union 就不可能了
  */
 
-import { UFUtil } from './1.5.12.test'
 import { UFWithQuickUnion, UFWithWeightedQuickUnion } from '../UF'
 import { treeEach, treeToList } from '@liuli-util/tree'
 import { sortBy } from '@liuli-util/array'
+import { UFUtil } from '../UFUtil'
 
 type Node = { id: number; children?: Node[] }
 
