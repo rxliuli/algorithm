@@ -1,4 +1,6 @@
 export interface IUF {
+  readonly idList: number[]
+
   /**
    * 在 p 和 q 之间添加一条连接
    */

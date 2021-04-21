@@ -10,7 +10,7 @@ import { treeEach, treeToList } from '@liuli-util/tree'
 import { sortBy } from '@liuli-util/array'
 import { UFUtil } from '../UFUtil'
 
-type Node = { id: number; children?: Node[] }
+export type Node = { id: number; children?: Node[] }
 
 describe('1.5.9', () => {
   const idList = [1, 1, 3, 1, 5, 6, 1, 3, 4, 5]
