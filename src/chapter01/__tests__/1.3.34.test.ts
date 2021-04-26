@@ -16,7 +16,7 @@ TODO 应该有某种更好的方式
 import { IBag } from '../Bag'
 import { ArrayUtil } from '../ArrayUtil'
 
-class RandomBag<T> implements IBag<T> {
+export class RandomBag<T> implements IBag<T> {
   private arr: T[] = []
   private _size = 0
 
