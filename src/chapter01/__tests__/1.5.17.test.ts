@@ -6,7 +6,7 @@
 import { UFWithWeightedQuickUnion } from '../UF'
 import { RandomUtil } from '../RandomUtil'
 
-function erdosRenyi(n: number): [number, number][] {
+export function erdosRenyi(n: number): [number, number][] {
   const uf = new UFWithWeightedQuickUnion(n)
   const res: [number, number][] = []
   while (uf.count() !== 1) {
