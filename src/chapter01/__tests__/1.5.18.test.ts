@@ -15,11 +15,14 @@ TODO 没看懂
 
 import { RandomUtil } from '../RandomUtil'
 import { RandomBag } from './1.3.34.test'
-import { UFWithWeightedQuickUnion } from '../UF'
+import { IUF, UFWithWeightedQuickUnion } from '../UF'
+import { Class } from 'type-fest'
 
 type Connection = [p: number, q: number]
 
-class RandomGrid {
+export class RandomGrid {
+  constructor(private readonly UF: Class<IUF>) {}
+
   /**
    * 生成一个连接的数组
    * @param n
@@ -27,8 +30,8 @@ class RandomGrid {
   generate(n: number): Connection[] {
     const bag = new RandomBag<Connection>()
     const len = n * n
-    console.log(len)
-    const uf = new UFWithWeightedQuickUnion(len)
+    // console.log(len)
+    const uf = new this.UF(len)
     while (uf.count() !== 1) {
       const p = RandomUtil.integer(len)
       const q = RandomUtil.integer(len)
@@ -71,7 +74,7 @@ class RandomGrid {
 }
 
 describe('1.5.18', () => {
-  const randomGrid = new RandomGrid()
+  const randomGrid = new RandomGrid(UFWithWeightedQuickUnion)
   it('测试 generate', () => {
     const arr = randomGrid.generate(2)
     console.log(arr)

@@ -6,12 +6,16 @@ TODO 看起来实际数据与猜想的比例为 ~1.1
 
 import { RandomUtil } from '../RandomUtil'
 import { erdosRenyi } from './1.5.17.test'
-import { markdownTable } from 'markdown-table'
+import { markdownTable } from '@liuli-util/markdown-table'
+import { UFWithWeightedQuickUnion } from '../UF'
 
 describe('1.5.21', () => {
   it('测试 erdosRenyi', () => {
     const res = RandomUtil.array(10, (i) => (i + 1) * 10).map((len) => {
-      return [len, erdosRenyi(len).length] as [number, number]
+      return [len, erdosRenyi(len, UFWithWeightedQuickUnion).length] as [
+        number,
+        number,
+      ]
     })
     console.log(markdownTable([['i', 'count'], ...res]))
   })
@@ -24,7 +28,7 @@ describe('1.5.21', () => {
   })
   it('测试公式的命中率', () => {
     const res = RandomUtil.array(1000, (i) => i + 2).map((len) => {
-      const real = erdosRenyi(len).length
+      const real = erdosRenyi(len, UFWithWeightedQuickUnion).length
       const compute = Math.floor((1 / 2) * len * Math.log(len))
       return [len, real, compute, compute === 0 ? 1 : real / compute] as const
     })

@@ -3,11 +3,12 @@
 
  */
 
-import { UFWithWeightedQuickUnion } from '../UF'
+import { IUF, UFWithWeightedQuickUnion } from '../UF'
 import { RandomUtil } from '../RandomUtil'
+import { Class } from 'type-fest'
 
-export function erdosRenyi(n: number): [number, number][] {
-  const uf = new UFWithWeightedQuickUnion(n)
+export function erdosRenyi(n: number, UF: Class<IUF>): [number, number][] {
+  const uf = new UF(n)
   const res: [number, number][] = []
   while (uf.count() !== 1) {
     const p = RandomUtil.integer(n)
@@ -19,5 +20,5 @@ export function erdosRenyi(n: number): [number, number][] {
 }
 
 it('1.5.17', () => {
-  console.log(erdosRenyi(10).length)
+  console.log(erdosRenyi(10, UFWithWeightedQuickUnion).length)
 })
