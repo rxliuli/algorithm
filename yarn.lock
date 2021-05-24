@@ -1195,7 +1195,7 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-chalk@^2.0.0:
+chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -3973,6 +3973,13 @@ source-map@^0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
+
+sparkly@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/sparkly/-/sparkly-5.0.0.tgz#7c649c8a3d7a50f23a96a9afd499c7f1b572ece3"
+  integrity sha512-lUyRXSbzXn0A/tnAPPWjTJ/gtq4qq6RJ4+1tGwnjUb+TmeJfxr1Ata36rxvCYrD90yDB2xRSxhpgmusuR8ep3w==
+  dependencies:
+    chalk "^2.4.2"
 
 spdx-correct@^3.0.0:
   version "3.1.1"
