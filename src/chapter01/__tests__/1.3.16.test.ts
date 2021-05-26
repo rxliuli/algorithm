@@ -11,14 +11,18 @@ interface BasicDate {
 }
 
 class SmallDate implements BasicDate {
-  constructor(public year: number, public month: number, public day: number) {}
+  constructor(
+    public readonly year: number,
+    public readonly month: number,
+    public readonly day: number,
+  ) {}
 
   toString(): string {
     return `${this.year}-${this.month}-${this.day}`
   }
 }
 
-class SmartDate implements BasicDate {
+export class SmartDate implements BasicDate {
   constructor(public year: number, public month: number, public day: number) {
     SmartDate.validate(this)
   }

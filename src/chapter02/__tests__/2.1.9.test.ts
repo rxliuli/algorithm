@@ -42,28 +42,28 @@
 import { markdownTable } from '@liuli-util/markdown-table'
 import { red } from 'ansi-colors'
 
-it('2.1.9', () => {
-  function sortOfShell<T>(
-    arr: T[],
-  ): [res: T[], locus: [i: number, j: number, arr: T[]][]] {
-    const locus: [i: number, j: number, arr: T[]][] = []
-    let len = arr.length
-    let h = 1
-    while (h < len / 3) h = 3 * h + 1 // 1, 4, 13, 40, 121, 364, 1093, ...
-    while (h >= 1) {
-      // 将数组变为h有序
-      for (let i = h; i < len; i++) {
-        // 将 a[i] 插入到 a[i-h], a[i-2*h], a[i-3*h]... 之中
-        for (let j = i; j >= h && arr[j] < arr[j - h]; j -= h) {
-          locus.push([j, j - h, [...arr]])
-          ;[arr[j], arr[j - h]] = [arr[j - h], arr[j]]
-        }
+export function sortOfShell<T>(
+  arr: T[],
+): [res: T[], locus: [i: number, j: number, arr: T[]][]] {
+  const locus: [i: number, j: number, arr: T[]][] = []
+  let len = arr.length
+  let h = 1
+  while (h < len / 3) h = 3 * h + 1 // 1, 4, 13, 40, 121, 364, 1093, ...
+  while (h >= 1) {
+    // 将数组变为h有序
+    for (let i = h; i < len; i++) {
+      // 将 a[i] 插入到 a[i-h], a[i-2*h], a[i-3*h]... 之中
+      for (let j = i; j >= h && arr[j] < arr[j - h]; j -= h) {
+        locus.push([j, j - h, [...arr]])
+        ;[arr[j], arr[j - h]] = [arr[j - h], arr[j]]
       }
-      h = Math.floor(h / 3)
     }
-    return [arr, locus]
+    h = Math.floor(h / 3)
   }
+  return [arr, locus]
+}
 
+it('2.1.9', () => {
   const arr = 'E A S Y S H E L L S O R T Q U E S T I O N'.split(' ')
   const [, locus] = sortOfShell(arr)
   console.log(
