@@ -1,3 +1,7 @@
+type GetValueType<T> = T extends () => any
+  ? ReturnType<Extract<T, () => any>> | Exclude<T, () => any>
+  : T
+
 export class RandomUtil {
   static integer(max: number): number
   static integer(min: number, max: number): number
@@ -33,5 +37,36 @@ export class RandomUtil {
       res.push(gen(i))
     }
     return res
+  }
+
+  /**
+   * 按照概率生成数据
+   * @param map
+   */
+  static builder<T>(
+    map: [probability: number, value: T | ((...args: any[]) => T)][],
+  ): (...args: any[]) => GetValueType<T> {
+    let sum = 0
+    const _map: [(v: number) => boolean, T][] = []
+    for (let [probability, value] of map) {
+      const left = sum
+      _map.push([
+        (v) => {
+          return v >= left && v < left + probability
+        },
+        value as T,
+      ])
+      sum += probability
+    }
+
+    return (...args: any[]) => {
+      const number = RandomUtil.integer(sum)
+      for (let [predicate, value] of _map) {
+        if (predicate(number)) {
+          return typeof value === 'function' ? value(...args) : value
+        }
+      }
+      throw new Error()
+    }
   }
 }

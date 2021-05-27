@@ -1,5 +1,5 @@
 import { RandomUtil } from '../../chapter01/RandomUtil'
-import { uniqueBy } from '@liuli-util/array'
+import { sortBy, uniqueBy } from '@liuli-util/array'
 
 export function testSort(sortBy: (arr: number[]) => number[]) {
   const arr = RandomUtil.array(100)
@@ -173,6 +173,106 @@ describe('测试排序', () => {
         '7546289103'.split('').map((s) => Number.parseInt(s)),
       )
       console.log(res)
+    })
+  })
+
+  describe('归并排序', () => {
+    describe('原地归并', () => {
+      /**
+       * 合并两个有序数组
+       * @param arr
+       * @param l
+       * @param r
+       * @param middle
+       */
+      function merge(arr: number[], l: number, r: number, middle: number) {
+        const aux = Array(arr.length)
+        for (let k = l; k <= r; k++) {
+          aux[k] = arr[k]
+        }
+        let i = l,
+          j = middle + 1
+        for (let k = l; k <= r; k++) {
+          if (i > middle) {
+            arr[k] = aux[j++]
+          } else if (j > r) {
+            arr[k] = aux[i++]
+          } else if (aux[i] < aux[j]) {
+            arr[k] = aux[i++]
+          } else {
+            arr[k] = aux[j++]
+          }
+        }
+        return arr
+      }
+
+      describe('测试 merge', () => {
+        it('基本示例', () => {
+          const arr = [4, 5, 6, 8, 2, 3, 7, 9]
+          expect(merge([...arr], 0, 7, 3)).toEqual(sortBy(arr))
+        })
+        it('测试合并中间的值情况', () => {
+          expect(merge([1, 3, 2, 4], 1, 2, 1)).toEqual([1, 2, 3, 4])
+        })
+      })
+
+      function sortOfMerge(arr: number[]) {
+        function f(arr: number[], l: number, r: number) {
+          if (l >= r) {
+            return
+          }
+          const middle = l + Math.floor((r - l) / 2)
+          f(arr, l, middle)
+          f(arr, middle + 1, r)
+          merge(arr, l, r, middle)
+        }
+
+        f(arr, 0, arr.length - 1)
+        return arr
+      }
+
+      it('测试 sortOfMerge', () => {
+        const arr = RandomUtil.array(10_000)
+        expect(sortOfMerge([...arr])).toEqual(sortBy(arr))
+      })
+
+      function sortSmallOfInsert(arr: number[], l: number, r: number) {
+        for (let i = l + 1; i <= r; i++) {
+          for (let j = i - 1; arr[j] > arr[j + 1] && j >= l; j--) {
+            ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+          }
+        }
+        return arr
+      }
+
+      function sortOfMergeAndInsert(arr: number[]) {
+        function f(arr: number[], l: number, r: number) {
+          if (arr.length < 15) {
+            sortSmallOfInsert(arr, l, r)
+            return
+          }
+          const middle = l + Math.floor((r - l) / 2)
+          f(arr, l, middle)
+          f(arr, middle + 1, r)
+          merge(arr, l, r, middle)
+        }
+
+        f(arr, 0, arr.length - 1)
+        return arr
+      }
+
+      describe('使用插入排序对小数组排序', () => {
+        it('测试 sortSmallOfInsert', () => {
+          expect(
+            sortSmallOfInsert([7, 5, 4, 6, 2, 8, 9, 1, 0, 3], 1, 8),
+          ).toEqual([7, 0, 1, 2, 4, 5, 6, 8, 9, 3])
+        })
+        //TODO 此处有 bug
+        it.skip('测试 sortOfMergeAndInsert', () => {
+          const arr = RandomUtil.array(20)
+          expect(sortOfMergeAndInsert([...arr])).toEqual(sortBy(arr))
+        })
+      })
     })
   })
 })
