@@ -184,6 +184,7 @@ describe('测试排序', () => {
      * @param l
      * @param r
      * @param middle
+     * @param aux
      */
     function merge(
       arr: number[],
@@ -299,9 +300,12 @@ describe('测试排序', () => {
     })
 
     describe('自底而上', () => {
+      /**
+       * @link https://photos.google.com/photo/AF1QipOjtCheOCXVjIrE05uEOLkygNq91X-WkP8Xpesr
+       * @param arr
+       */
       function sortOfMergeBU(arr: number[]) {
         const aux = Array(arr.length)
-        let count = 1
         for (let count = 1; count < arr.length; count *= 2) {
           for (let l = 0; l < arr.length - count; l += count * 2) {
             let r: number = Math.min(arr.length, l + count * 2) - 1
