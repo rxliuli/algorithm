@@ -7,6 +7,40 @@ export function testSort(sortBy: (arr: number[]) => number[]) {
   expect(sortBy([...arr])).toEqual([...arr].sort((a, b) => a - b))
 }
 
+/**
+ * 合并两个有序数组
+ * @param arr
+ * @param l
+ * @param r
+ * @param middle
+ * @param aux
+ */
+export function merge(
+  arr: number[],
+  l: number,
+  r: number,
+  middle: number,
+  aux: number[],
+) {
+  for (let k = l; k <= r; k++) {
+    aux[k] = arr[k]
+  }
+  let i = l,
+    j = middle + 1
+  for (let k = l; k <= r; k++) {
+    if (i > middle) {
+      arr[k] = aux[j++]
+    } else if (j > r) {
+      arr[k] = aux[i++]
+    } else if (aux[i] < aux[j]) {
+      arr[k] = aux[i++]
+    } else {
+      arr[k] = aux[j++]
+    }
+  }
+  return arr
+}
+
 describe('测试排序', () => {
   let numberOfCompare = 0
   let numberOfExchange = 0
@@ -178,40 +212,6 @@ describe('测试排序', () => {
   })
 
   describe('归并排序', () => {
-    /**
-     * 合并两个有序数组
-     * @param arr
-     * @param l
-     * @param r
-     * @param middle
-     * @param aux
-     */
-    function merge(
-      arr: number[],
-      l: number,
-      r: number,
-      middle: number,
-      aux: number[],
-    ) {
-      for (let k = l; k <= r; k++) {
-        aux[k] = arr[k]
-      }
-      let i = l,
-        j = middle + 1
-      for (let k = l; k <= r; k++) {
-        if (i > middle) {
-          arr[k] = aux[j++]
-        } else if (j > r) {
-          arr[k] = aux[i++]
-        } else if (aux[i] < aux[j]) {
-          arr[k] = aux[i++]
-        } else {
-          arr[k] = aux[j++]
-        }
-      }
-      return arr
-    }
-
     describe('原地归并', () => {
       describe('测试 merge', () => {
         it('基本示例', () => {
