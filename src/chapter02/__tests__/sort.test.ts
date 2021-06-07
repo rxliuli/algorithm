@@ -325,4 +325,68 @@ describe('测试排序', () => {
       })
     })
   })
+
+  describe('快速排序', () => {
+    /**
+     * 找到一个分割点然后将元素分割到两边
+     * @param arr
+     * @param l
+     * @param r
+     */
+    function split(arr: number[], l: number, r: number): number {
+      const m = arr[l]
+      let i = l + 1,
+        k = r
+      for (; i <= k; ) {
+        while (i <= k && arr[i] <= m) {
+          arr[i - 1] = arr[i]
+          i++
+        }
+        while (i <= k && arr[k] > m) {
+          k--
+        }
+        if (i <= k && arr[i] > arr[k]) {
+          ;[arr[i - 1], arr[k]] = [arr[k], arr[i]]
+          i++
+          k--
+        }
+      }
+      arr[i - 1] = m
+      return i - 1
+    }
+
+    it('测试 split', () => {
+      // const arr = [2, 1, 3]
+      // const arr = [7, 5, 4, 6, 2, 8, 9, 1, 0, 3]
+      // const arr = [5, 4, 6, 2, 3, 0, 1]
+      const arr = [1, 1, 1]
+      console.log(split(arr, 0, 1))
+      console.log(arr)
+    })
+
+    /**
+     * 示意图：https://photos.google.com/photo/AF1QipMK6AsuZ3mjD0P7k8DZhA6lqzE1PmwD92TMF92t
+     * @param arr
+     */
+    function sortOfQuick(arr: number[]): number[] {
+      const res = [...arr]
+      function f(arr: number[], l: number, r: number) {
+        if (l >= r) {
+          return
+        }
+        const m = split(arr, l, r)
+        f(arr, l, m - 1)
+        f(arr, m + 1, r)
+      }
+      f(res, 0, res.length - 1)
+      return res
+    }
+
+    it('测试 sortOfQuick', () => {
+      console.log(sortOfQuick([7, 5, 4, 6, 2, 8, 9, 1, 0, 3]))
+      console.log(sortOfQuick([1, 1, 1]))
+      const arr = RandomUtil.array(100)
+      expect(sortOfQuick([...arr])).toEqual(sortBy(arr))
+    })
+  })
 })
