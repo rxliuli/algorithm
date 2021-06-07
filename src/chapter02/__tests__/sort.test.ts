@@ -257,7 +257,7 @@ describe('测试排序', () => {
         return arr
       }
 
-      function sortOfMergeAndInsert(arr: number[]) {
+      function sortOfMergeEnhance(arr: number[]) {
         const aux = Array(arr.length)
 
         function f(arr: number[], l: number, r: number) {
@@ -265,10 +265,13 @@ describe('测试排序', () => {
             sortSmallOfInsert(arr, l, r)
             return
           }
-          const middle = l + Math.floor((r - l) / 2)
-          f(arr, l, middle)
-          f(arr, middle + 1, r)
-          merge(arr, l, r, middle, aux)
+          const m = l + Math.floor((r - l) / 2)
+          f(arr, l, m)
+          f(arr, m + 1, r)
+          if (arr[m] <= arr[m + 1]) {
+            return
+          }
+          merge(arr, l, r, m, aux)
         }
 
         f(arr, 0, arr.length - 1)
@@ -294,7 +297,7 @@ describe('测试排序', () => {
         })
         it('测试 sortOfMergeAndInsert', () => {
           const arr = RandomUtil.array(20)
-          expect(sortOfMergeAndInsert([...arr])).toEqual(sortBy(arr))
+          expect(sortOfMergeEnhance([...arr])).toEqual(sortBy(arr))
         })
       })
     })
