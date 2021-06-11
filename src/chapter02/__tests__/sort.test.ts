@@ -211,6 +211,15 @@ describe('测试排序', () => {
     })
   })
 
+  function sortSmallOfInsert(arr: number[], l: number, r: number) {
+    for (let i = l + 1; i <= r; i++) {
+      for (let j = i - 1; arr[j] > arr[j + 1] && j >= l; j--) {
+        ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+      }
+    }
+    return arr
+  }
+
   describe('归并排序', () => {
     describe('原地归并', () => {
       describe('测试 merge', () => {
@@ -247,15 +256,6 @@ describe('测试排序', () => {
         const arr = RandomUtil.array(10_000)
         expect(sortOfMerge([...arr])).toEqual(sortBy(arr))
       })
-
-      function sortSmallOfInsert(arr: number[], l: number, r: number) {
-        for (let i = l + 1; i <= r; i++) {
-          for (let j = i - 1; arr[j] > arr[j + 1] && j >= l; j--) {
-            ;[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
-          }
-        }
-        return arr
-      }
 
       function sortOfMergeEnhance(arr: number[]) {
         const aux = Array(arr.length)
@@ -329,6 +329,7 @@ describe('测试排序', () => {
   describe('快速排序', () => {
     /**
      * 找到一个分割点然后将元素分割到两边
+     * 示意图：https://photos.google.com/photo/AF1QipNvoiTZEqD4BCe5d6MTGC78hNQ8wFjxP2jnXlLn
      * @param arr
      * @param l
      * @param r
@@ -370,8 +371,10 @@ describe('测试排序', () => {
      */
     function sortOfQuick(arr: number[]): number[] {
       const res = [...arr]
+      const M = 15
       function f(arr: number[], l: number, r: number) {
-        if (l >= r) {
+        if (r - l <= M) {
+          sortSmallOfInsert(arr, l, r)
           return
         }
         const m = split(arr, l, r)
