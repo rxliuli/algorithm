@@ -1,6 +1,7 @@
 import { RandomUtil } from '../../chapter01/RandomUtil'
 import { sortBy, uniqueBy } from '@liuli-util/array'
 import { countTime } from '@liuli-util/test'
+import { ArrayUtil } from '../../chapter01/ArrayUtil'
 
 export function testSort(sortBy: (arr: number[]) => number[]) {
   const arr = RandomUtil.array(100)
@@ -330,6 +331,7 @@ describe('测试排序', () => {
     /**
      * 找到一个分割点然后将元素分割到两边
      * 示意图：https://photos.google.com/photo/AF1QipNvoiTZEqD4BCe5d6MTGC78hNQ8wFjxP2jnXlLn
+     * 示意图（改进）：https://photos.google.com/photo/AF1QipMjz3fDrYX0q-t2LJb1DIaCorA8C0eQZ2oHhlBy
      * @param arr
      * @param l
      * @param r
@@ -338,31 +340,81 @@ describe('测试排序', () => {
       const m = arr[l]
       let i = l + 1,
         k = r
-      for (; i <= k; ) {
-        while (i <= k && arr[i] <= m) {
-          arr[i - 1] = arr[i]
+      while (true) {
+        while (arr[i] <= m) {
           i++
         }
-        while (i <= k && arr[k] > m) {
+        while (arr[k] > m) {
           k--
         }
-        if (i <= k && arr[i] > arr[k]) {
-          ;[arr[i - 1], arr[k]] = [arr[k], arr[i]]
-          i++
-          k--
+        if (i > k) {
+          break
         }
+        ArrayUtil.exchange(arr, i, k)
+        i++
+        k--
       }
-      arr[i - 1] = m
+      ArrayUtil.exchange(arr, i - 1, l)
       return i - 1
     }
 
-    it('测试 split', () => {
-      // const arr = [2, 1, 3]
-      // const arr = [7, 5, 4, 6, 2, 8, 9, 1, 0, 3]
-      // const arr = [5, 4, 6, 2, 3, 0, 1]
-      const arr = [1, 1, 1]
-      console.log(split(arr, 0, 1))
-      console.log(arr)
+    /**
+     * 找到一个分割点然后将元素分割到两边
+     * 示意图：https://photos.google.com/photo/AF1QipMjz3fDrYX0q-t2LJb1DIaCorA8C0eQZ2oHhlBy
+     * @param arr
+     * @param l
+     * @param r
+     */
+    function partition(arr: number[], l: number, r: number): number {
+      const m = arr[l]
+      let i = l,
+        k = r + 1
+      while (true) {
+        while (arr[++i] <= m && i < r) {}
+        while (arr[--k] > m && k > l) {}
+        if (i >= k) break
+        ArrayUtil.exchange(arr, i, k)
+      }
+      ArrayUtil.exchange(arr, l, k)
+      return k
+    }
+
+    describe('测试分割', () => {
+      function f(partition: (arr: number[], l: number, r: number) => number) {
+        return (arr: number[]) => {
+          const m = partition(arr, 0, arr.length - 1)
+          return { arr, m }
+        }
+      }
+
+      function testRes({ arr, m }: { arr: number[]; m: number }) {
+        for (let i = 0; i < arr.length; i++) {
+          if (i < m) {
+            expect(arr[i]).toBeLessThanOrEqual(arr[m])
+          }
+          if (i > m) {
+            expect(arr[i]).toBeGreaterThan(arr[m])
+          }
+        }
+      }
+
+      it('测试 split', () => {
+        const fn = f(split)
+        testRes(fn([2, 1, 3]))
+        testRes(fn([7, 5, 4, 6, 2, 8, 9, 1, 0, 3]))
+        testRes(fn([5, 4, 6, 2, 3, 0, 1]))
+        testRes(fn([1, 1, 1]))
+        testRes(fn(RandomUtil.array(100)))
+      })
+
+      it('测试 partition', () => {
+        const fn = f(partition)
+        testRes(fn([2, 1, 3]))
+        testRes(fn([7, 5, 4, 6, 2, 8, 9, 1, 0, 3]))
+        testRes(fn([5, 4, 6, 2, 3, 0, 1]))
+        testRes(fn([1, 1, 1]))
+        testRes(fn(RandomUtil.array(100)))
+      })
     })
 
     /**

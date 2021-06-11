@@ -35,4 +35,15 @@ export class ArrayUtil {
     }
     return arr.reduce((res: any[], a) => res.concat(this.flat(a as any)), [])
   }
+
+  /**
+   * 交换数组中的两个元素
+   * @param arr
+   * @param i
+   * @param k
+   */
+  static exchange<T extends any[]>(arr: T, i: number, k: number): T {
+    ;[arr[i], arr[k]] = [arr[k], arr[i]]
+    return arr
+  }
 }
