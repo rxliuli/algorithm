@@ -624,30 +624,30 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@liuli-util/array@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@liuli-util/array/-/array-3.1.0.tgz#2d3623d8c0b568a5e274a6a59583ec9b6bec17b6"
-  integrity sha512-U2qWEaSlEBUYzO0WL6i0SuAO+6KiRRS5GsH1/6As0f1KHYQNhXNkIbLZjVyEm2AKl08ve5RfKw7c9lMIweF6wg==
+"@liuli-util/array@^3.2.5":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@liuli-util/array/-/array-3.2.5.tgz#94a46b7e8d59e706e5a355c1c5897f88838fe2d3"
+  integrity sha512-KZLmCxy01Bbwnn8XND4WiicvHAzH8eAecGgKFQZsUE2MzDDSrLwobA2M8QWUXBsHqGk+imWwulqMZhETjn4/8Q==
 
-"@liuli-util/async@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@liuli-util/async/-/async-3.1.1.tgz#dd96e9924b5e87704e7929086de3ff9a8857f185"
-  integrity sha512-1CT1mopFdJLsBxo9zpLOIICn+KYbrDl+aSCeExrJvHlW59Sh8kdsF4kXFzql8uxo1kNEDmTZlxoH3CSFxfnIrg==
+"@liuli-util/async@^3.2.5":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@liuli-util/async/-/async-3.2.5.tgz#73aa94eef76c4dd87ef2d4ec1610b3a70408b983"
+  integrity sha512-wVVoLHdHjb63mZzx6QccY2QrOF3u6VxnUgprdUFYORVIEdh471+sxr9eMkwG3Kr4nVYLToJsOQvm8ndsniEv7g==
 
 "@liuli-util/markdown-table@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@liuli-util/markdown-table/-/markdown-table-3.0.0.tgz#1d3bb09c1529f826d6b4d681b2768bf1012deded"
   integrity sha512-SbKuXzSfPce1k5HkUZej6LqtudLt/7QJNPrte7k+0pjDN0STPzC66Og2n2tGCK83DQwuQbtUTqXoD8cCfKHyKw==
 
-"@liuli-util/test@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@liuli-util/test/-/test-3.2.0.tgz#f0109a22b21a516c77f6e7d09d96e6b199169ba8"
-  integrity sha512-YAXF80cagnQs7/uH2VPAUNl9OogKZTzeNP18poYLP610bYj+CqAX6PXw0u00jJIYQaAOHsJpZ/woDhuc0NyDsA==
+"@liuli-util/test@^3.2.5":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@liuli-util/test/-/test-3.2.5.tgz#8ac3599bca49ddb1514d65281e7ff86255add109"
+  integrity sha512-YpPd7Vm52lsxGMAKZZWNz6+q5QdAYMHk34HtXJvP5+GT7JfAV9+3FsWsPPquqT+jtmmxg4RT3qt/vVu49qP/HA==
 
-"@liuli-util/tree@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@liuli-util/tree/-/tree-3.1.0.tgz#4095782f536d7cba2db9483e31669a94c0f3c16c"
-  integrity sha512-zI+ibna4W0VcKcsTwM1wu4dMRZoqvy2atWWfDipG5SBVL5gH7HpTOnI8SWu5CKshbDlCkIyen3n45pcgAfhYBQ==
+"@liuli-util/tree@^3.2.5":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@liuli-util/tree/-/tree-3.2.5.tgz#6e919e64a30111ceb104ad1785f99240fdc542ad"
+  integrity sha512-OwHf69cykLIo27o0cG90lI/3oLirAunq4fL3UhijXIwSFtKX4wuUg4UntBDJUQ8ZOAUIZ2jdk79MTiPsn/YWhg==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
