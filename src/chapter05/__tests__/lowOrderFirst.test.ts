@@ -35,6 +35,7 @@ describe('低位优先', () => {
   /**
    * 低位优先的字符串排序
    * 其实想法是将低位排序之后，再排序高位的，那么高位相同的字符串低位仍然是有序的，只不过与高位排序不同之处在于排序的顺序不同，优先保证同一高位的低位有序罢了
+   * @link https://photos.google.com/photo/AF1QipO8yxfvYG1ZAyOuULJoD-i4w3R8dTOukKGTCAaj
    * @param arr
    * @param W
    */
@@ -54,7 +55,7 @@ describe('低位优先', () => {
   })
   it('随机数据测试', () => {
     const w = 10
-    const arr = RandomUtil.array(10, () =>
+    const arr = RandomUtil.array(100, () =>
       RandomUtil.array(w, () =>
         String.fromCharCode(Random.integer(46, 256)),
       ).join(''),
