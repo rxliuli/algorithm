@@ -639,6 +639,11 @@
   resolved "https://registry.yarnpkg.com/@liuli-util/markdown-table/-/markdown-table-3.0.0.tgz#1d3bb09c1529f826d6b4d681b2768bf1012deded"
   integrity sha512-SbKuXzSfPce1k5HkUZej6LqtudLt/7QJNPrte7k+0pjDN0STPzC66Og2n2tGCK83DQwuQbtUTqXoD8cCfKHyKw==
 
+"@liuli-util/prettier-standard-config@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@liuli-util/prettier-standard-config/-/prettier-standard-config-0.1.0.tgz#d51cf2e788c03fccc19cce6f7da75262ee65c0d2"
+  integrity sha512-y0dbvdhqHtwo77kwFukn7HVdaojGgimmDM+QP3JB3SlLjdwePb7wLjr9UKqk3eNMFa3v5oIFGzEgK9L2mK7dWw==
+
 "@liuli-util/test@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@liuli-util/test/-/test-3.2.0.tgz#f0109a22b21a516c77f6e7d09d96e6b199169ba8"

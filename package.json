@@ -17,14 +17,7 @@
       "git add"
     ]
   },
-  "prettier": {
-    "tabWidth": 2,
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "endOfLine": "lf"
-  },
+  "prettier": "@liuli-util/prettier-standard-config",
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -43,6 +36,7 @@
     "@liuli-util/array": "^3.1.0",
     "@liuli-util/async": "^3.1.1",
     "@liuli-util/markdown-table": "^3.0.0",
+    "@liuli-util/prettier-standard-config": "^0.1.0",
     "@liuli-util/test": "^3.2.0",
     "@liuli-util/tree": "^3.1.0",
     "@types/benchmark": "^2.1.0",
